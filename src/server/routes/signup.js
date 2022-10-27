@@ -12,13 +12,8 @@ router.post('/', async (req, res) => {
     profilePicture: req.body.profilePicture
   });
 
-  await newUser.findOne({ email: newUser.email }).then((user) => {
-    if (user) {
-      res.status(400).send("Email already exists");
-    } else {
-      newUser.save();
-      res.status(200).send(newUser);
-    }
+  await newUser.save().then((user) => {
+    res.status(200).send(user);
   }).catch((err) => {
     res.status(400).send(err);
   });
