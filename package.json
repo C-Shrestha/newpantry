@@ -6,7 +6,7 @@
     "scripts": {
         "start": "node server.js",
         "dev-server": "nodemon server.js",
-        "heroku-postbuild": " NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+        "heroku-postbuild": " NPM_CONFIG_PRODUCTION=false npm install --prefix src/client && npm run build --prefix src/client"
     },
     "author": "",
     "license": "ISC",
