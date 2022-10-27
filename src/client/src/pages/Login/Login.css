@@ -1,0 +1,57 @@
+h1{
+    font-size: 50px;
+    font-family: 'Barlow Semi Condensed';
+    font-weight: bolder;
+    color: #4F5E30;
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed';
+    font-weight: 500px;
+    font-size: 25px;
+    color: #A5BA78; 
+}
+
+text{
+    font-family: 'Barlow Semi Condensed';
+    color: #4F5E30;
+    text-align: center;
+    padding-left: 50px;
+    font-weight: 500px;
+    font-size: 25px;
+}
+
+button{
+    font-family: 'Barlow Semi Condensed';
+    font-size: 25px;
+    font-weight: 500px;
+    width: 370px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+    background-color: #A5BA78;
+    border-radius: 20px;
+    color: white;
+}
+
+input{
+    font-family: 'Barlow Semi Condensed';
+    font-size: 25px;
+    font-weight: 500px;
+    border: none;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    text-align: center;
+    color: #797979;
+    width: 350px;
+    margin-top: 10px;
+    padding: 10px 10px 10px 10px;
+}
+
+.form{
+    float: left;
+    padding-left: 20%;
+    padding-top: 10%;
+}
