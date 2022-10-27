@@ -1,4 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Favorites from "./pages/Favorites/Favorites";
+import HomePage from "./pages/HomePage/HomePage";
 import reportWebVitals from './reportWebVitals';
 import SignUp from "./pages/SignUp/SignUp";
 import Login from './pages/Login/Login';
@@ -14,6 +16,8 @@ root.render(
       <Route path="/" element={<App />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<SignUp />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/favorites" element={<Favorites />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")
