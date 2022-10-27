@@ -10,10 +10,15 @@ router.post('/', async (req, res) => {
     email: req.body.email,
     password: req.body.password,
     profilePicture: req.body.profilePicture
-  }); 
+  });
 
-  await newUser.save().then(() => {
-    res.status(200).send(newUser);
+  await newUser.findOne({ email: newUser.email }).then((user) => {
+    if (user) {
+      res.status(400).send("Email already exists");
+    } else {
+      newUser.save();
+      res.status(200).send(newUser);
+    }
   }).catch((err) => {
     res.status(400).send(err);
   });
