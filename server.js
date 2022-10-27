@@ -67,6 +67,9 @@ app.use('/api/login', login);
 const users = require('./src/server/routes/users');
 app.use('/api/users', users);
 
+const search = require('./src/server/routes/users');
+app.use('/api/search', search);
+
 app.listen(port, () => {
   console.log('-----PORT OPEN---SERVER CHECK VALID------')
 });
