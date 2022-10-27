@@ -2,9 +2,8 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user');
-const bodyParser = require('body-parser').json();
 
-router.post('/', bodyParser, async (req, res) => {
+router.post('/', async (req, res) => {
   const newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
