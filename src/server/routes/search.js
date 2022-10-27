@@ -3,14 +3,14 @@ const router = express.Router();
 const request = require('request');
 
 router.post('/', async (req, res) => {
-    request({
-        uri: 'www.themealdb.com/api/json/v1/1/filter.php',
-        qs: {
-            s: req.body.str
-        }
-    }).pipe(res);
 
-  res.status(200).send(res);
+    request({
+        uri: 'https://www.themealdb.com/api/json/v1/1/filter.php',
+        qs: {
+            i: req.body.search
+        }
+    }).pipe(res.status(200));
+
 });
 
 module.exports = router;
