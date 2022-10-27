@@ -1,127 +1,43 @@
+require('dotenv').config();
+
+const port = process.env.PORT || 5000;
+// const dbURL = process.env.DB_URL;
+// const port = 5000;
+const dbURL = "mongodb+srv://APIAccess:apiteam123456@cop4331-largeproject-pa.yxoncp7.mongodb.net/?retryWrites=true&w=majority";
+
 const express = require('express');
+const app = express();
+
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const path = require('path');         
-const PORT = process.env.PORT || 5000;  
-
-
-const app = express();
-
-app.set('port', (process.env.PORT || 5000));
-
-
+app.set('port', port);
 app.use(cors());
 app.use(bodyParser.json());
 
-
-// Server static assets if in production
 if (process.env.NODE_ENV === 'production') 
 {
-  // Set static folder
-  app.use(express.static('frontend/build'));
+  app.use(express.static('../client/build'));
 
-  app.get('*', (req, res) => 
-  {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, './src/client', 'build', 'index.html'));
   });
 }
 
-
-require('dotenv').config();
+const mongoose = require('mongoose');
 const MongoClient = require('mongodb').MongoClient; 
-const url = process.env.MONGODB_URI;
-
-const client = new MongoClient(url);
+const client = new MongoClient(dbURL);
 client.connect();
 
-  
-
-
-/*
-app.post('/api/addcard', async (req, res, next) =>
-{
-  // incoming: userId, color
-  // outgoing: error
-	
-  const { userId, card } = req.body;
-
-  const newCard = {Card:card,UserId:userId};
-  var error = '';
-
-  try
-  {
-    const db = client.db("COP4331Cards");
-    const result = db.collection('Cards').insertOne(newCard);
-  }
-  catch(e)
-  {
-    error = e.toString();
-  }
-
-
-  var ret = { error: error };
-  res.status(200).json(ret);
+mongoose.connect(dbURL).then(() => {
+  console.log('Connected to MongoDB');
+}).catch((err) => {
+  console.log(err);
 });
-
-*/
-
-app.post('/api/login', async (req, res, next) => 
-{
-  // incoming: login, password
-  // outgoing: id, firstName, lastName, error
-	
- var error = '';
-
-  const { login, password } = req.body;
-
-  const db = client.db("COP4331Cards");
-  const results = await db.collection('Users').find({Login:login,Password:password}).toArray();
-
-  var id = -1;
-  var fn = '';
-  var ln = '';
-
-  if( results.length > 0 )
-  {
-    id = results[0].UserID;
-    fn = results[0].FirstName;
-    ln = results[0].LastName;
-  }
-
-  var ret = { id:id, firstName:fn, lastName:ln, error:''};
-  res.status(200).json(ret);
-});
-
-/*
-
-app.post('/api/searchcards', async (req, res, next) => 
-{
-  // incoming: userId, search
-  // outgoing: results[], error
-
-  var error = '';
-
-  const { userId, search } = req.body;
-
-  var _search = search.trim();
-  
-  const db = client.db("COP4331Cards");
-  const results = await db.collection('Cards').find({"Card":{$regex:_search+'.*', $options:'r'}}).toArray();
-
-
-  
-  var _ret = [];
-  for( var i=0; i<results.length; i++ )
-  {
-    _ret.push( results[i].Card );
-  }
-  
-  var ret = {results:_ret, error:error};
-  res.status(200).json(ret);
-})
-
-*/
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('-----DB opening-----successfully connected to the database'));
 
 app.use((req, res, next) => 
 {
@@ -137,10 +53,20 @@ app.use((req, res, next) =>
   next();
 });
 
-//app.listen(5000); // start Node + Express server on port 5000
-
-app.listen(PORT, () => 
-{
-  console.log('Server listening on port ' + PORT);
+// Endpoints
+app.get('/api', (req, res) => {
+  res.send("Hello world!");
 });
 
+const signup = require('./src/server/routes/signup');
+app.use('/api/signup', signup);
+
+const login = require('./src/server/routes/login');
+app.use('/api/login', login);
+
+const users = require('./src/server/routes/users');
+app.use('/api/users', users);
+
+app.listen(port, () => {
+  console.log('-----PORT OPEN---SERVER CHECK VALID------')
+});
