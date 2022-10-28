@@ -1,0 +1,151 @@
+/* Login and Signup buttons */
+.home button{
+    background-color: #A5BA78;
+    border-radius: 25px;
+    float: right;
+    margin-top: 2%;
+    margin-right: 2%;
+    box-shadow: 2px 5px 5px #d1d1d1;
+    width: 15%;
+    border: none;
+    cursor: pointer;
+    padding: 5px 5px 5px 5px;
+}
+.home #signup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 10px 10px 10px;
+}
+/* Link sytling */
+.home a, .download a{
+    color: white;
+    font-size: 2.5vw;
+    font-weight: normal;
+    font-family: 'Barlow Semi Condensed';
+    text-decoration: none;
+}
+/* Pantry logo */
+.home img{
+    width: 33%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* First and last two divs */
+.home, .download{
+    background-color: white;
+    height: 100vh;
+    width: auto;
+    position: relative;
+}
+.home text, .download text{
+    color:#A5BA78;
+    font-size: 3.7vw;
+    line-height: 225%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Barlow Semi Condensed';
+    text-align: center;
+    padding-left: 50px;
+    font-weight: 500px; 
+}
+/* Middle three divs */
+.middle{
+    background-color: #4F5E30;
+    height: 100vh;
+    width: auto;
+}
+.middle h1{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 24%;
+    color: white;
+    font-weight: bolder;
+    font-size: 4vw;
+    font-family: 'Barlow Semi Condensed';
+    text-align: center;
+}
+.middle text{
+    color:#A5BA78;
+    font-size: xx-large;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Barlow Semi Condensed';
+    text-align: center;
+    padding-left: 50px;
+    font-weight: 500px;
+}
+/* Mobile app image and buttons */
+.mobile{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 5px;
+}
+.mobile-item1 {
+    display: inline-grid;
+    grid-template-rows: 50% 50%;
+}
+.mobile-item{
+    position: relative;
+}
+.mobile-item img{
+    width: 57%;
+    float: left;
+    height: auto;
+    margin-top: 1%;
+    margin-left: -8%;
+    position: relative;
+}
+.mobile-item button{
+    margin-right: 7%;
+    margin-top: 7%;
+    box-shadow: 2px 5px 5px #d1d1d1;
+    border-radius: 10px;
+    width: 20%;
+    border: none;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+    color: white;
+    font-family: 'Barlow Semi Condensed';
+    font-size: 20px; 
+    font-weight: medium;
+}
+.color1 button{
+    background-color: #FABC4F;
+    position: absolute;
+    margin-top: 11%;
+    right: 0;
+}
+.color2 button{
+    background-color: #EA862D;
+    position: absolute;
+    margin-top: 0;
+    right: 0;
+}
+/* Organize, Plan, and Cook images */
+.cans{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    height: 10vh;
+    position: relative;
+}
+.cans img{
+    margin-top: -2%;
+    width: 33.33%;
+    height: auto;
+    position: relative;
+} 
+.cans #one{
+    width: 35%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}

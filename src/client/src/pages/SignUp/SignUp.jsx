@@ -32,9 +32,11 @@ export default class SignUp extends Component{
     render(){
         // Forgot password, e-mail verification
         return(
-            <div className="loginDiv">
+            <div className="signupDiv">
+                <h1>SIGN UP</h1>
                 <div className="formSU">
-                    <h1>SIGN UP</h1>
+                    <img src="/profileImages/one.png" alt="profile"></img>
+                    <br/>
                     <input placeholder="first name"></input>
                     <br/>
                     <input placeholder="last name"></input>
