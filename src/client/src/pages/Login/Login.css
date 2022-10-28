@@ -1,4 +1,4 @@
-h1{
+.loginDiv h1{
     font-size: 50px;
     font-family: 'Barlow Semi Condensed';
     font-weight: bolder;
@@ -6,7 +6,7 @@ h1{
     text-align: center;
 }
 
-a{
+.loginDiv a{
     text-decoration: none;
     font-family: 'Barlow Semi Condensed';
     font-weight: 500px;
@@ -14,7 +14,7 @@ a{
     color: #A5BA78; 
 }
 
-text{
+.loginDiv text{
     font-family: 'Barlow Semi Condensed';
     color: #4F5E30;
     text-align: center;
@@ -23,7 +23,7 @@ text{
     font-size: 25px;
 }
 
-button{
+.loginDiv button{
     font-family: 'Barlow Semi Condensed';
     font-size: 25px;
     font-weight: 500px;
@@ -36,7 +36,7 @@ button{
     color: white;
 }
 
-input{
+.loginDiv input{
     font-family: 'Barlow Semi Condensed';
     font-size: 25px;
     font-weight: 500px;

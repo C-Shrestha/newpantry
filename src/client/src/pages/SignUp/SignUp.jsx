@@ -32,7 +32,7 @@ export default class SignUp extends Component{
     render(){
         // Forgot password, e-mail verification
         return(
-            <div className="loginDiv">
+            <div className="signupDiv">
                 <div className="formSU">
                     <h1>SIGN UP</h1>
                     <input placeholder="first name"></input>

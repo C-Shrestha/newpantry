@@ -1,11 +1,12 @@
-h1{
+.signupDiv h1{
     font-size: 50px;
     font-family: 'Barlow Semi Condensed';
     font-weight: bolder;
     color: #4F5E30;
+    text-align: center;
 }
 
-a{
+.signupDiv a{
     text-decoration: none;
     font-family: 'Barlow Semi Condensed';
     font-weight: 500px;
@@ -13,15 +14,16 @@ a{
     color: #A5BA78; 
 }
 
-text{
+.signupDiv text{
     font-family: 'Barlow Semi Condensed';
     color: #4F5E30;
+    padding-left: 50px;
     text-align: center;
     font-weight: 500px;
     font-size: 25px;
 }
 
-button{
+.signupDiv button{
     font-family: 'Barlow Semi Condensed';
     font-size: 25px;
     font-weight: 500px;
@@ -34,7 +36,7 @@ button{
     color: white;
 }
 
-input{
+.signupDiv input{
     font-family: 'Barlow Semi Condensed';
     font-size: 25px;
     font-weight: 500px;
