@@ -1,0 +1,39 @@
+img{
+    position:fixed;
+    top: 20px;
+    left: 0px;
+    width: 25%;
+    height: auto;
+    padding: 1% 1% 1% 1%;
+}
+
+.nav-bar{
+    display: flex;
+    justify-content: center;
+}
+
+.search-bar{
+    position:fixed;
+    right: 5%;
+    top: 80px;
+    border-radius: 30px;
+    box-shadow: 2px 5px #e6e6e6;
+}
+
+.search-bar input{
+    background-color: #EDEDED;
+    outline: none;
+}
+
+.nav-bar a{
+    margin-top: 100px;
+    padding-left: 7%;
+    padding-right: 7%;
+    font-size: 35px;
+    font-weight: bold;
+    color: #848484;
+}
+
+#active{
+    color: #A5BA78;
+}
