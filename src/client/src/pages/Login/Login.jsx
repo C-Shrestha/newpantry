@@ -36,7 +36,7 @@ export default class Login extends Component{
             <div className="loginDiv">
                 <div className="form">
                     <h1>LOGIN</h1>
-                    <input placeholder="username"></input>
+                    <input placeholder="email"></input>
                     <br/>
                     <input placeholder="password"></input>
                     <br/><br/>

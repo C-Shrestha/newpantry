@@ -1,16 +1,16 @@
 .loginDiv h1{
-    font-size: 50px;
+    font-size: 4vw;
     font-family: 'Barlow Semi Condensed';
     font-weight: bolder;
     color: #4F5E30;
-    text-align: center;
+    text-align: center; 
 }
 
 .loginDiv a{
     text-decoration: none;
     font-family: 'Barlow Semi Condensed';
-    font-weight: 500px;
-    font-size: 25px;
+    font-weight: medium;
+    font-size: 1.75vw;
     color: #A5BA78; 
 }
 
@@ -18,16 +18,16 @@
     font-family: 'Barlow Semi Condensed';
     color: #4F5E30;
     text-align: center;
-    padding-left: 50px;
-    font-weight: 500px;
-    font-size: 25px;
+    margin-left: 10%;
+    font-weight: medium;
+    font-size: 1.75vw;
 }
 
 .loginDiv button{
     font-family: 'Barlow Semi Condensed';
-    font-size: 25px;
+    font-size: 1.75vw;
     font-weight: 500px;
-    width: 370px;
+    width: 105%;
     border: none;
     cursor: pointer;
     padding: 10px 10px 10px 10px;
@@ -38,14 +38,15 @@
 
 .loginDiv input{
     font-family: 'Barlow Semi Condensed';
-    font-size: 25px;
-    font-weight: 500px;
+    font-size: 1.75vw;
+    font-weight: medium;
     border: none;
+    outline: none;
     background-color: #D9D9D9;
     border-radius: 20px;
     text-align: center;
     color: #797979;
-    width: 350px;
+    width: 100%;
     margin-top: 10px;
     padding: 10px 10px 10px 10px;
 }
@@ -54,4 +55,5 @@
     float: left;
     padding-left: 20%;
     padding-top: 10%;
+    position: relative;
 }
