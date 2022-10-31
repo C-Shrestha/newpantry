@@ -11,9 +11,11 @@ export default class HomePage extends Component{
         return(
             <div className='landing'>
                 <div className="nav-bar">
-                    <img class ="pantry-pic" src="/PantryHorizontal.png" alt="pantry icon"/>
-                    <a href="/home" id="active">Home</a>
-                    <a href="/favorites">Favorites</a>
+                    <a href="/">
+                        <img class ="pantry-pic" src="/PantryHorizontal.png" alt="pantry icon"/>    
+                    </a>
+                    <a class="links" href="/home" id="active">Home</a>
+                    <a class="links" href="/favorites">Favorites</a>
                     <div className="search-bar">
                         <FontAwesomeIcon class="search-pic" icon={faMagnifyingGlass} />
                         <input></input>
