@@ -51,7 +51,7 @@ export default class SignUp extends Component{
                     <br/><br/>
                     <text>Already Registered? </text><a href='/login'>Login</a>
                 </div>
-                <div className="object">
+                <div className="objectSU">
                     <canvas ref={this.canvasRef} />
                 </div>
             </div>

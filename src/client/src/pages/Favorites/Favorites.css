@@ -1,1 +1,58 @@
-/* LATER */
+.select{
+    display: flex;
+    justify-content: center;
+    margin-top: 5.5%;
+    font-family: 'Barlow Semi Condensed';
+    color: white;
+    border-radius: 50px;
+    width: 25%;
+    background-color: #4F5E30;
+    margin: auto;
+    margin-top: 5%;
+    height: 48px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.select button{
+    background: transparent;
+    border-radius: 50px;
+    font-size: 24px;
+    font-weight: medium;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.favorites{
+    position: absolute;
+    margin-left: 25%;
+    margin-top: 3%;
+}
+
+.pantry{
+    position: absolute;
+    margin-left: 110%;
+    margin-top: 3%;
+}
+
+.profile{
+    position: absolute;
+    right: 5%;
+    top: 25%;
+}
+
+.profile-pic{
+    height: 48px;
+    width:48px;
+    color: #4F5E30;
+}
+
+.animationBubble{
+    position: absolute;
+    transition: transform 1s;
+    transform: translateX(-98px);
+    border-radius: 50px;
+    height: 48px;
+    width: 15%;
+    background-color: #A5BA78;
+}
