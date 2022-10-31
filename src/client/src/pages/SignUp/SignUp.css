@@ -66,3 +66,9 @@
     padding: none;
     width: 65%;
 }
+
+.objectSU{
+    position: absolute;
+    right: 10%;
+    top: 12.5%;
+}
