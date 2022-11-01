@@ -49,10 +49,19 @@ export default class FavoritesPage extends Component{
                             <button onClick={this.pantryButton}>PANTRY</button>
                         </div>
                     </div>
+                    
                     <div className="profile">
                         <FontAwesomeIcon class="profile-pic" icon={faUser} />
                     </div>
                 </div>
+                <br/> <br/> <br/> <br/> <br/> <br/>
+                <div class="button-box">
+                    <div id="btn"></div>
+                        <button type="button" class="toggle-btn" id="loginSlider">Login</button>
+                        <button type="button" class="toggle-btn">Signup</button>
+                    
+                </div>
+                
             </div>
         );
     }

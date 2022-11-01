@@ -56,3 +56,49 @@
     width: 15%;
     background-color: #A5BA78;
 }
+
+/* login and signup buttons */
+.toggle-btn {
+    padding: 10px 42px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    color: #FFFFFF;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-align: center;
+}
+/* brown slider at top of form */
+#btn {
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 10%;
+    background: #897261;
+    border-radius: 30px;
+    transition: .4s;
+}
+
+#login {
+
+}
+
+#loginButton,
+#loginName,
+#loginPassword {
+
+    bottom: -50px;
+}
+
+#signup {
+
+    left: -400px;
+    top: -172px;
+}
+
+.submit-btn:hover {
+    background: #cdab91;
+}

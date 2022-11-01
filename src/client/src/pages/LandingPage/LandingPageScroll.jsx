@@ -20,9 +20,7 @@ const LandingPageScroll = () => {
                 <FullpageSection>
                     <div className="middle">
                         <div className="cans">
-                            <img src="/apple.png" alt="apple can" />
-                            <img src="/pear.png" alt="pear can" />
-                            <img src="/mango.png" alt="mango can" />
+                            <img id="two" src="/cans.png" alt="cans" />
                         </div>
                         <h1>Organize</h1>
                         <text>store the food in your pantry in digital lists for<br /> ease of access</text>
