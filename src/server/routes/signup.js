@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user');
+const { genToken } = require('../utils/genJWT');
 
 router.post('/', async (req, res) => {
   const newUser = new User({
@@ -17,7 +18,8 @@ router.post('/', async (req, res) => {
       res.status(400).send("User already exists");
     } else {
       newUser.save().then((user) => {
-        res.status(200).send(user);
+        const token = genToken({ email: newUser.email });
+        res.status(200).set("authorization", token).send(user);
       }).catch((err) => {
         res.status(400).send(err);
       });
