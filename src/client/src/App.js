@@ -1,6 +1,7 @@
 import LandingPageScroll from './pages/LandingPage/LandingPageScroll';
 import './App.css';
 
+
 function App() {
   return (
     <div className="App">

@@ -25,7 +25,6 @@ export default class FavoritesPage extends Component{
         pantry.style.marginLeft = `30%`;
     }
 
-
     render(){
         return(
             <div className='landing'>
@@ -49,6 +48,7 @@ export default class FavoritesPage extends Component{
                             <button onClick={this.pantryButton}>PANTRY</button>
                         </div>
                     </div>
+                    
                     <div className="profile">
                         <FontAwesomeIcon class="profile-pic" icon={faUser} />
                     </div>

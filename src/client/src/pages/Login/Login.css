@@ -51,6 +51,19 @@
     padding: 10px 10px 10px 10px;
 }
 
+.loginDiv input[type=submit] {
+    font-family: 'Barlow Semi Condensed';
+    font-size: 1.75vw;
+    font-weight: 500px;
+    width: 105%;
+    border: none;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+    background-color: #A5BA78;
+    border-radius: 20px;
+    color: white;
+}
+
 .form{
     float: left;
     padding-left: 20%;
