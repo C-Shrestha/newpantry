@@ -15,6 +15,7 @@ const cors = require('cors');
 app.set('port', port);
 app.use(cors());
 app.use(bodyParser.json());
+app.disable('x-powered-by');
 
 if (process.env.NODE_ENV === 'production') 
 {
