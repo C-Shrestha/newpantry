@@ -4,46 +4,45 @@ import './Login.css';
 
 export default class Login extends Component{
       
-      handleInputChange = (event) => {
-        const { value, name } = event.target;
-        this.setState({
-          [name]: value
-        });
-      }
-    
-      onSubmit = (event) => {
-
-        event.preventDefault();
-        fetch('https://newpantry.herokuapp.com/api/login', {
-          method: 'POST',redirect: 'follow',
-          body: JSON.stringify(this.state),
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        })
-        .then(res => {
-          if (res.status === 200) {
-            console.log(res)
-            window.location.href = "https://newpantry.herokuapp.com/home" ;
-          } else {
-            const error = new Error(res.error);
-            console.log(error)
-            throw error;
-          }
-        })
-        .catch(err => {
-          console.error(err);
-          alert('Error logging in please try again');
-        });
-      }
     constructor(props) {
         super(props);
         this.canvasRef = React.createRef();
         this.state = {
-            email : '',
+            email: '',
             password: ''
           };
+    }  
+    handleInputChange = (event) => {
+        const { value, name } = event.target;
+        this.setState({
+          [name]: value
+        });
     }
+    
+    onSubmit = (event) => {
+        event.preventDefault();
+        fetch('https://newpantry.herokuapp.com/api/login', {
+            method: 'POST',redirect: 'follow',
+            body: JSON.stringify(this.state),
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        })
+        .then(res => {
+            if (res.status === 200) {
+            console.log(res)
+            window.location.href = "https://newpantry.herokuapp.com/home" ;
+            } else {
+            const error = new Error(res.error);
+            console.log(error)
+            throw error;
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Error logging in please try again');
+        });
+    } 
 
     // ******************* COMPONENT LIFECYCLE ******************* //
     componentDidMount() {
@@ -89,7 +88,7 @@ export default class Login extends Component{
                         required
                     />
                     <br/><br/>
-                    <input type="submit" value="submit"/>
+                    <input type="submit" value="login"/>
                     <br/><br/>
                     <text>Not registered? </text><a href="/signup">Sign Up</a>
                 </form>
