@@ -17,7 +17,7 @@ img{
     right: 5%;
     top: 90px;
     border-radius: 30px;
-    box-shadow: 2px 5px #e6e6e6;
+    box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
 }
 
 .search-bar input{
