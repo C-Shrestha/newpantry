@@ -2,15 +2,17 @@ const express = require('express');
 const router = express.Router();
 const request = require('request');
 
-router.post('/', async (req, res) => {
-
+router.get('/', async (req, res) => {
     request({
         uri: 'https://www.themealdb.com/api/json/v1/1/filter.php',
-        qs: {
-            i: req.body.search
+        qs: req.query
+    }, (err, response, body) => {
+        if (err) {
+            res.status(400).send(err);
+        } else {
+            res.status(200).send(body);
         }
-    }).pipe(res.status(200));
-
+    });
 });
 
 module.exports = router;
