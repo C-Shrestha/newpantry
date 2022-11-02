@@ -1,52 +1,129 @@
-import ViewObject from '../ViewObject/ViewObject';
+// import ViewObject from '../ViewObject/ViewObject';
 import React, {Component} from 'react';
 import './Login.css';
 
 export default class Login extends Component{
-
+    
+    
     constructor(props) {
-        super(props);
-        this.canvasRef = React.createRef();
-    }
+        super(props)
+        this.state = {
+          email : '',
+          password: ''
+        };
+      }
+      handleInputChange = (event) => {
+        const { value, name } = event.target;
+        this.setState({
+          [name]: value
+        });
+      }
+    
+      onSubmit = (event) => {
 
-    // ******************* COMPONENT LIFECYCLE ******************* //
-    componentDidMount() {
-        // Get canvas, pass to custom class
-        const canvas = this.canvasRef.current;
-        this.viewOjbect = new ViewObject(canvas);
+        event.preventDefault();
+        fetch('https://newpantry.herokuapp.com/api/login', {
+          method: 'POST',redirect: 'follow',
+          body: JSON.stringify(this.state),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+        .then(res => {
+          if (res.status === 200) {
+            console.log(res)
+            window.location.href = "https://newpantry.herokuapp.com/home" ;
+          } else {
+            const error = new Error(res.error);
+            console.log(error)
+            throw error;
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Error logging in please try again');
+        });
+      }
+    // constructor(props) {
+    //     super(props);
+    //     this.canvasRef = React.createRef();
+    // }
 
-        // Init any event listeners
-        window.addEventListener('mousemove', this.mouseMove);
-        window.addEventListener('resize', this.handleResize);
-    }
+    // // ******************* COMPONENT LIFECYCLE ******************* //
+    // componentDidMount() {
+    //     // Get canvas, pass to custom class
+    //     const canvas = this.canvasRef.current;
+    //     this.viewOjbect = new ViewObject(canvas);
 
-    // ******************* EVENT LISTENERS ******************* //
-    mouseMove = (event) => {
-        this.viewOjbect.onMouseMove(event);
-    }
+    //     // Init any event listeners
+    //     window.addEventListener('mousemove', this.mouseMove);
+    //     window.addEventListener('resize', this.handleResize);
+    // }
 
-    handleResize = () => {
-        this.viewOjbect.onWindowResize(window.innerWidth, window.innerHeight);
-    };
+    // // ******************* EVENT LISTENERS ******************* //
+    // mouseMove = (event) => {
+    //     this.viewOjbect.onMouseMove(event);
+    // }
+
+    // handleResize = () => {
+    //     this.viewOjbect.onWindowResize(window.innerWidth, window.innerHeight);
+    // };
 
     render(){
         // Forgot password, e-mail verification
         return(
             <div className="loginDiv">
-                <div className="form">
+                <form className="form" onSubmit={this.onSubmit}>
                     <h1>LOGIN</h1>
-                    <input placeholder="email"></input>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="email"
+                        value={this.state.email}
+                        onChange={this.handleInputChange}
+                        required
+                    />
                     <br/>
-                    <input placeholder="password"></input>
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="password"
+                        value={this.state.password}
+                        onChange={this.handleInputChange}
+                        required
+                    />
                     <br/><br/>
-                    <button>login</button>
+                    <input type="submit" value="Submit"/>
+                    {/* <button>login</button> */}
                     <br/><br/>
                     <text>Not registered? </text><a href="/signup">Sign Up</a>
-                </div>
-                <div className="object">
+                </form>
+                {/* <div className="object">
                     <canvas ref={this.canvasRef} />
-                </div>
+                </div> */}
             </div>
+
+
+// <form onSubmit={this.onSubmit}>
+// <h1>Login Below!</h1>
+// <input
+//   type="email"
+//   name="email"
+//   placeholder="Enter email"
+//   value={this.state.email}
+//   onChange={this.handleInputChange}
+//   required
+// />
+// <input
+//   type="password"
+//   name="password"
+//   placeholder="Enter password"
+//   value={this.state.password}
+//   onChange={this.handleInputChange}
+//   required
+// />
+// <input type="submit" value="Submit"/>
+// </form>
         );
     }
 }
