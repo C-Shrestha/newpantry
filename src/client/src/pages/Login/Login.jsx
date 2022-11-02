@@ -1,17 +1,9 @@
-// import ViewObject from '../ViewObject/ViewObject';
+import ViewObject from '../ViewObject/ViewObject';
 import React, {Component} from 'react';
 import './Login.css';
 
 export default class Login extends Component{
-    
-    
-    constructor(props) {
-        super(props)
-        this.state = {
-          email : '',
-          password: ''
-        };
-      }
+      
       handleInputChange = (event) => {
         const { value, name } = event.target;
         this.setState({
@@ -44,30 +36,34 @@ export default class Login extends Component{
           alert('Error logging in please try again');
         });
       }
-    // constructor(props) {
-    //     super(props);
-    //     this.canvasRef = React.createRef();
-    // }
+    constructor(props) {
+        super(props);
+        this.canvasRef = React.createRef();
+        this.state = {
+            email : '',
+            password: ''
+          };
+    }
 
-    // // ******************* COMPONENT LIFECYCLE ******************* //
-    // componentDidMount() {
-    //     // Get canvas, pass to custom class
-    //     const canvas = this.canvasRef.current;
-    //     this.viewOjbect = new ViewObject(canvas);
+    // ******************* COMPONENT LIFECYCLE ******************* //
+    componentDidMount() {
+        // Get canvas, pass to custom class
+        const canvas = this.canvasRef.current;
+        this.viewOjbect = new ViewObject(canvas);
 
-    //     // Init any event listeners
-    //     window.addEventListener('mousemove', this.mouseMove);
-    //     window.addEventListener('resize', this.handleResize);
-    // }
+        // Init any event listeners
+        window.addEventListener('mousemove', this.mouseMove);
+        window.addEventListener('resize', this.handleResize);
+    }
 
-    // // ******************* EVENT LISTENERS ******************* //
-    // mouseMove = (event) => {
-    //     this.viewOjbect.onMouseMove(event);
-    // }
+    // ******************* EVENT LISTENERS ******************* //
+    mouseMove = (event) => {
+        this.viewOjbect.onMouseMove(event);
+    }
 
-    // handleResize = () => {
-    //     this.viewOjbect.onWindowResize(window.innerWidth, window.innerHeight);
-    // };
+    handleResize = () => {
+        this.viewOjbect.onWindowResize(window.innerWidth, window.innerHeight);
+    };
 
     render(){
         // Forgot password, e-mail verification
@@ -93,37 +89,14 @@ export default class Login extends Component{
                         required
                     />
                     <br/><br/>
-                    <input type="submit" value="Submit"/>
-                    {/* <button>login</button> */}
+                    <input type="submit" value="submit"/>
                     <br/><br/>
                     <text>Not registered? </text><a href="/signup">Sign Up</a>
                 </form>
-                {/* <div className="object">
+                <div className="object">
                     <canvas ref={this.canvasRef} />
-                </div> */}
+                </div>
             </div>
-
-
-// <form onSubmit={this.onSubmit}>
-// <h1>Login Below!</h1>
-// <input
-//   type="email"
-//   name="email"
-//   placeholder="Enter email"
-//   value={this.state.email}
-//   onChange={this.handleInputChange}
-//   required
-// />
-// <input
-//   type="password"
-//   name="password"
-//   placeholder="Enter password"
-//   value={this.state.password}
-//   onChange={this.handleInputChange}
-//   required
-// />
-// <input type="submit" value="Submit"/>
-// </form>
         );
     }
 }
