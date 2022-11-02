@@ -15,6 +15,7 @@ const cors = require('cors');
 app.set('port', port);
 app.use(cors());
 app.use(bodyParser.json());
+app.disable('x-powered-by');
 
 if (process.env.NODE_ENV === 'production') 
 {
@@ -66,6 +67,9 @@ app.use('/api/login', login);
 
 const users = require('./src/server/routes/users');
 app.use('/api/users', users);
+
+const search = require('./src/server/routes/search');
+app.use('/api/search', search);
 
 app.listen(port, () => {
   console.log('-----PORT OPEN---SERVER CHECK VALID------')
