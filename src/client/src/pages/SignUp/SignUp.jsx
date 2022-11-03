@@ -50,24 +50,24 @@ export default class SignUp extends Component{
     }
 
     // ******************* COMPONENT LIFECYCLE ******************* //
-    // componentDidMount() {
-    //     // Get canvas, pass to custom class
-    //     const canvas = this.canvasRef.current;
-    //     this.viewOjbect = new ViewObject(canvas);
+    componentDidMount() {
+        // Get canvas, pass to custom class
+        const canvas = this.canvasRef.current;
+        this.viewOjbect = new ViewObject(canvas);
 
-    //     // Init any event listeners
-    //     window.addEventListener('mousemove', this.mouseMove);
-    //     window.addEventListener('resize', this.handleResize);
-    // }
+        // Init any event listeners
+        window.addEventListener('mousemove', this.mouseMove);
+        window.addEventListener('resize', this.handleResize);
+    }
 
-    // // ******************* EVENT LISTENERS ******************* //
-    // mouseMove = (event) => {
-    //     this.viewOjbect.onMouseMove(event);
-    // }
+    // ******************* EVENT LISTENERS ******************* //
+    mouseMove = (event) => {
+        this.viewOjbect.onMouseMove(event);
+    }
 
-    // handleResize = () => {
-    //     this.viewOjbect.onWindowResize(window.innerWidth, window.innerHeight);
-    // };
+    handleResize = () => {
+        this.viewOjbect.onWindowResize(window.innerWidth, window.innerHeight);
+    };
 
     render(){
         // Forgot password, e-mail verification
@@ -117,9 +117,9 @@ export default class SignUp extends Component{
                     <br/><br/>
                     <text>Already Registered? </text><a href='/login'>Login</a>
                 </form>
-                {/* <div className="objectSU">
+                <div className="objectSU">
                     <canvas ref={this.canvasRef} />
-                </div> */}
+                </div>
             </div>
         );
     }
