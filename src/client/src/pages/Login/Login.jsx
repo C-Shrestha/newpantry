@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import './Login.css';
 
 export default class Login extends Component{
-      
+    
     constructor(props) {
         super(props);
         this.canvasRef = React.createRef();
@@ -21,6 +21,8 @@ export default class Login extends Component{
     
     onSubmit = (event) => {
         event.preventDefault();
+        var md5 = require('md5');
+        this.state.password = md5(this.state.password);
         fetch('https://newpantry.herokuapp.com/api/login', {
             method: 'POST',redirect: 'follow',
             body: JSON.stringify(this.state),
@@ -30,12 +32,14 @@ export default class Login extends Component{
         })
         .then(res => {
             if (res.status === 200) {
-            console.log(res)
-            window.location.href = "https://newpantry.herokuapp.com/home" ;
+                console.log(res);
+                console.log(res.body);
+                console.log(res.headers);
+                window.location.href = "https://newpantry.herokuapp.com/home" ;
             } else {
-            const error = new Error(res.error);
-            console.log(error)
-            throw error;
+                const error = new Error(res.error);
+                console.log(error)
+                throw error;
             }
         })
         .catch(err => {
