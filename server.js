@@ -71,6 +71,12 @@ app.use('/api/users', users);
 const search = require('./src/server/routes/search');
 app.use('/api/search', search);
 
+const favorites = require('./src/server/routes/favorites');
+app.use('/api/favorites', favorites);
+
+const categories = require('./src/server/routes/categories');
+app.use('/api/categories', categories);
+
 app.listen(port, () => {
   console.log('-----PORT OPEN---SERVER CHECK VALID------')
 });
