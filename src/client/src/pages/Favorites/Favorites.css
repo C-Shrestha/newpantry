@@ -1,58 +1,149 @@
+/* This div is a container to the toggle button(s)*/
 .select{
-    display: flex;
-    justify-content: center;
-    margin-top: 5.5%;
-    font-family: 'Barlow Semi Condensed';
-    color: white;
-    border-radius: 50px;
-    width: 25%;
     background-color: #4F5E30;
-    margin: auto;
-    margin-top: 5%;
-    height: 48px;
+    border-radius: 50px;
     box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+    color: white;
+    display: flex;
+    font-family: 'Barlow Semi Condensed';
+    height: 48px;
+    justify-content: center;
+    margin: auto;
+    margin-top: 2.5%;
+    width: 25%;
 }
 
+/* Styling for the toggle buttons (Favorites/Pantry) */
+/* The z-index allows the buttons to rest atop the div that moves to display which is selected */
 .select button{
     background: transparent;
-    border-radius: 50px;
+    border: none;
+    color: white;
+    cursor: pointer;
     font-size: 24px;
     font-weight: medium;
-    color: white;
-    border: none;
-    cursor: pointer;
+    padding: 10px 15%;
+    z-index: 10;
 }
 
-.favorites{
-    position: absolute;
-    margin-left: 25%;
-    margin-top: 3%;
-}
-
-.pantry{
-    position: absolute;
-    margin-left: 110%;
-    margin-top: 3%;
-}
-
-.profile{
-    position: absolute;
-    right: 5%;
-    top: 25%;
-}
-
-.profile-pic{
-    height: 48px;
-    width:48px;
-    color: #4F5E30;
-}
-
-.animationBubble{
-    position: absolute;
-    transition: transform 1s;
-    transform: translateX(-98px);
+/* Here is the moving div that allows for the toggle button functionality */
+#animationBubble{
+    background-color: #A5BA78;
     border-radius: 50px;
     height: 48px;
-    width: 15%;
-    background-color: #A5BA78;
+    left: 37.5%;
+    position: absolute;
+    transition: .4s;
+    width: 12.5%;
+}
+
+/* This div contains the profile icon */
+.profile{
+    position: absolute;
+    right: 30vh;
+    top: 20vh;
+}
+
+/* Styling for the profile icon */
+.profile-pic{
+    color: #4F5E30;
+    cursor: pointer;
+    height: 48px;
+    width: 48px;
+}
+
+/* This div contains all of the items unique to the pantry page */
+/* It is only visible if the pantry page is meant to be displayed */
+.pantry{
+    background-color: #D9D9D9;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60vh;
+    width: 75%;
+    margin: auto;
+    margin-top: 2.5%;
+    display: flex;
+    visibility: hidden;
+    overflow: scroll;
+}
+
+/* Styling for top-bar of pantry */
+.top-bar{
+    border-radius: 50px;
+    display: flex;
+    height: 15%;
+    margin: auto;
+    margin-top: 0;
+    width: 100%;
+}
+
+/* Styling for header in top-bar of pantry */
+.top-bar h1{
+    color: #4F5E30;
+    font-size: 48px;
+    font-weight: medium;
+    margin: auto;
+    margin-top: 1%;
+}
+
+/* Styling for plus icon in top-bar of pantry */
+.top-bar .plus-pic{
+    color: #4F5E30;
+    cursor: pointer;
+    height: 48px;
+    position: relative;
+    right: 3.5%;
+    top: 25%;
+    width: 48px;
+}
+
+/* Styling for container div that holds table */
+.items{
+    background-color: #D9D9D9;
+    border-radius: 50px;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* Styling table and spacing */
+.items table{
+    border-collapse: separate;
+    border-spacing: 50px 20px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 2.5%;
+    overflow: hidden;
+    table-layout: fixed;
+}
+
+/* Styling for items in table */
+.items table td{
+    background-color: #FABC4F;
+    border-radius: 20px;
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    height: 66px;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    word-wrap: break-word;
+    width: 500px;
+}
+
+
+/* No scrollbar shown, just scroll */
+::-webkit-scrollbar{
+    visibility: hidden;
+}
+
+/* This div contains all of the items unique to the favorites page */
+/* It is only visible if the favorites page is meant to be displayed */
+.favorites{
+    display: flex;
+    visibility: visible;
 }
