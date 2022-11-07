@@ -72,3 +72,17 @@
     right: 10%;
     top: 14%;
 }
+
+.btn{
+    background-color: transparent;
+    border: none;
+}
+
+.caretBtn{
+    cursor: pointer;
+    position: absolute;
+    top: 17%;
+    color: #4F5E30;
+    height: 48px;
+    width: 48px;
+}

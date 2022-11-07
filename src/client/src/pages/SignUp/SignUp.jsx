@@ -1,3 +1,5 @@
+import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ViewObject from '../ViewObject/ViewObject';
 import React, {Component} from 'react';
 import './SignUp.css';
@@ -12,7 +14,7 @@ export default class SignUp extends Component{
             lastName: '',
             email: '',
             password: '',
-            profilePicture: '',
+            profilePicture: '1.png',
           };
     }
     handleInputChange = (event) => {
@@ -49,6 +51,32 @@ export default class SignUp extends Component{
         });
     }
 
+    changeProfilePictureRight(){
+        var curPicture = document.getElementById("profile-img");
+        var curPicIdx = curPicture.src[(curPicture.src.length - 5)];
+        if(curPicIdx == 6){
+            curPicIdx = 1;
+        }
+        else{
+            curPicIdx++;
+        }
+        var newSrc = curPicture.src.substring(0, curPicture.src.length-5) + curPicIdx + curPicture.src.substring(curPicture.src.length-4);
+        curPicture.src = newSrc;
+    }
+
+    changeProfilePictureLeft(){
+        var curPicture = document.getElementById("profile-img");
+        var curPicIdx = curPicture.src[(curPicture.src.length - 5)];
+        if(curPicIdx == 1){
+            curPicIdx = 6;
+        }
+        else{
+            curPicIdx--;
+        }
+        var newSrc = curPicture.src.substring(0, curPicture.src.length-5) + curPicIdx + curPicture.src.substring(curPicture.src.length-4);
+        curPicture.src = newSrc;
+    }
+
     // ******************* COMPONENT LIFECYCLE ******************* //
     componentDidMount() {
         // Get canvas, pass to custom class
@@ -75,7 +103,13 @@ export default class SignUp extends Component{
             <div className="signupDiv">
                 <h1>SIGN UP</h1>
                 <form className="formSU" onSubmit={this.onSubmit}>
-                    <img src="/profileImages/one.png" alt="profile" value={this.state.profilePicture}></img>
+                    <button type="button" class="btn">
+                        <FontAwesomeIcon class="caretBtn" icon={faCaretLeft} onClick={this.changeProfilePictureLeft}/>
+                    </button>
+                    <img id="profile-img" src="/profileImages/1.png" alt="profile" value="1.png"></img>
+                    <button type="button" class="btn">
+                        <FontAwesomeIcon class="caretBtn" icon={faCaretRight} onClick={this.changeProfilePictureRight}/>
+                    </button>
                     <br/>
                     <input
                         type="text"
