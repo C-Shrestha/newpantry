@@ -1,9 +1,7 @@
 require('dotenv').config();
 
 const port = process.env.PORT || 5000;
-// const dbURL = process.env.DB_URL;
-// const port = 5000;
-const dbURL = "mongodb+srv://APIAccess:apiteam123456@cop4331-largeproject-pa.yxoncp7.mongodb.net/?retryWrites=true&w=majority";
+const dbURL = process.env.dbURL;
 
 const express = require('express');
 const app = express();
