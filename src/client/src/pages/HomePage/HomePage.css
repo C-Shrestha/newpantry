@@ -1,72 +1,61 @@
 img{
-    position:fixed;
-    top: 20px;
-    left: 0px;
-    width: 25%;
+    width: 100%;
     height: auto;
     padding: 1% 1% 1% 1%;
 }
 
 .nav-bar{
-    display: flex;
+    display: grid;
     justify-content: center;
+    grid-template-columns: 25% 20% 20% 35%;
 }
 
-.search-bar{
-    position:fixed;
-    right: 5%;
-    top: 90px;
-    border-radius: 30px;
+.li{
+    text-align: center;
+    margin: auto;
+}
+
+.li input{
     box-shadow: 3px 4px 5px 0px rgba(0, 0, 0, 0.38);
-}
-
-.search-bar input{
     border-radius: 30px;
     background-color: #EDEDED;
     border: none;
     height: 48px;
-    width: 350px;
+    width: 375px;
     outline: none;
     text-align: center;
     font-weight: bolder;
     font-size: 20px;
     font-family: 'Barlow Semi Condensed';
     color: dimgray;
-    padding-left: 50px;
-    padding-right: 10px;
+
+}
+
+.search-pic{
+    margin-top: 11px;
+    margin-left: 17px;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    color: #A5A5A5;
+    position: absolute;
+    visibility: visible;
 }
 
 .nav-bar .links{
     margin-top: 100px;
     padding-left: 7%;
     padding-right: 7%;
-    font-size: 35px;
+    font-size: 2.5vw;
     font-weight: bold;
     color: #848484;
+    text-decoration: none;
 }
 
 #active{
     color: #A5BA78;
 }
 
-.search-pic{
-    position: absolute;
-    padding-left: 3%;
-    padding-top: 4%;
-    height: 24px;
-    width: 24px;
-    cursor: pointer;
-    color: #A5A5A5;
-}
-
 .carousel{
     margin-top: 2%;
-}
-
-a{
-    text-decoration: none;
-}
-
-.pantry-pic{
-    margin-top: -6%;
 }

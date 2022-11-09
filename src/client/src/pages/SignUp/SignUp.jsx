@@ -24,32 +24,29 @@ export default class SignUp extends Component{
         });
     }
     
-    onSubmit = (event) => {
+    onSubmit = async (event) => {
         event.preventDefault();
         var md5 = require('md5');
-        this.state.password = md5(this.state.password);
-        fetch('https://newpantry.herokuapp.com/api/signup', {
-            method: 'POST',redirect: 'follow',
-            body: JSON.stringify(this.state),
-            headers: {
-            'Content-Type': 'application/json'
-            }
-        })
-        .then(res => {
-            if (res.status === 200) {
-            console.log(res)
-            window.location.href = "https://newpantry.herokuapp.com/login" ;
-            } else {
-            const error = new Error(res.error);
-            console.log(error)
-            throw error;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Error logging in please try again');
-        });
-    }
+        this.state.password = md5(this.state.password); 
+        const URL = 'https://newpantry.herokuapp.com/api/signup';
+        const body = JSON.stringify({firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password, profilePicture: this.state.profilePicture});
+        try{
+            const response = await fetch(URL, {
+                method: 'POST',
+                body: body,
+                headers: {
+                'Content-Type': 'application/json'
+                },
+            });
+            const json = await response.json();
+            console.log(json);
+            const token = response.headers.get("Authorization");
+            console.log(token);
+        } catch (error){
+            console.log(error.response);
+            console.error(error);
+        };
+    } 
 
     changeProfilePictureRight(){
         var curPicture = document.getElementById("profile-img");
