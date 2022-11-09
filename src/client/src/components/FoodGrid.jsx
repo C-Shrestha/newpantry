@@ -4,8 +4,6 @@ import React, {useEffect, useState} from 'react';
 import {Grid} from '@mui/material'
 import "./FoodGrid.css";
 
-
-
 export const FoodGrid = () => {
   const [meals, setMeals] = useState([]);
     const [latestMeals, setLatestMeals] = useState([]);
