@@ -9,7 +9,6 @@
     height: 48px;
     justify-content: center;
     margin: auto;
-    margin-top: 2.5%;
     width: 25%;
 }
 
@@ -35,21 +34,6 @@
     position: absolute;
     transition: .4s;
     width: 12.5%;
-}
-
-/* This div contains the profile icon */
-.profile{
-    position: absolute;
-    right: 30vh;
-    top: 20vh;
-}
-
-/* Styling for the profile icon */
-.profile-pic{
-    color: #4F5E30;
-    cursor: pointer;
-    height: 48px;
-    width: 48px;
 }
 
 /* This div contains all of the items unique to the pantry page */

@@ -39,11 +39,8 @@ export default class SignUp extends Component{
                 },
             });
             const json = await response.json();
-            console.log(json);
             const token = response.headers.get("Authorization");
-            console.log(token);
         } catch (error){
-            console.log(error.response);
             console.error(error);
         };
     } 

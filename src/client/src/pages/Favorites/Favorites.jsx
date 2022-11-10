@@ -6,6 +6,17 @@ import './Favorites.css';
 
 export default class FavoritesPage extends Component{
 
+    constructor(props){
+        super(props);
+        if(document.cookie == ""){
+            window.location.href = "https://newpantry.herokuapp.com"
+        }
+        else{
+            this.state = {
+                token: document.cookie
+            };
+        }
+    }
 
     favoritesButton(){
         // Move the div pill to hover over page that is currently enabled (favorites)
@@ -46,14 +57,14 @@ export default class FavoritesPage extends Component{
                         <FontAwesomeIcon className="search-pic" id="search" icon={faMagnifyingGlass}/>
                         <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon}></input>
                     </div>
+                    <div className="li">
+                        <FontAwesomeIcon class="profile-pic" icon={faUser} />
+                    </div>
                 </div>
                 <div className="select">
                     <div className="animationBubble" id="animationBubble"></div>
                     <button class="toggle" onClick={this.favoritesButton}>FAVORITES</button>
                     <button class="toggle" onClick={this.pantryButton}>PANTRY</button>
-                </div>
-                <div className="profile">
-                    <FontAwesomeIcon class="profile-pic" icon={faUser} />
                 </div>
                 <div className="pantry" id="pantry">
                     <div className="top-bar">

@@ -4,7 +4,7 @@
     font-size: 3.5vw;
     font-family: 'Barlow Semi Condensed';
     padding-left: 4.5%;
-    margin-top: -2.5%;
+    margin-top: 2.5%;
     margin-bottom: -2.5%;
 }
 
@@ -18,9 +18,11 @@
     color: white; 
     opacity: 100%; 
     border-radius: 20px; 
-    object-fit: contain;
     position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 .title{
     bottom: 0px;
     left: 0px;
@@ -43,8 +45,8 @@
 
 .heartbtn{
     border-radius: 50%;
-    width: 10%;
-    height: 13%;
+    width: 60px;
+    height: 60px;
     border: none;
     color: white;
     background-color: #EA862D;
