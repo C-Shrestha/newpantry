@@ -128,6 +128,7 @@
 /* This div contains all of the items unique to the favorites page */
 /* It is only visible if the favorites page is meant to be displayed */
 .favorites{
-    display: flex;
     visibility: visible;
+    margin-top: -30%;
+    width: auto;
 }

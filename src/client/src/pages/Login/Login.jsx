@@ -35,7 +35,7 @@ export default class Login extends Component{
             });
             const json = await response.json();
             const token = response.headers.get("Authorization");
-            document.cookie = token;
+            document.cookie = token + " "+ this.state.email;
             window.location.href = "https://newpantry.herokuapp.com/home";
         } catch (error){
             console.log(error);

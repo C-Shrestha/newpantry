@@ -1,6 +1,7 @@
 import { faMagnifyingGlass, faUser, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import React, {Component} from 'react';
+import FavGrid from "../../components/FavGrid"
 import './Favorites.css';
 
 
@@ -16,6 +17,28 @@ export default class FavoritesPage extends Component{
                 token: document.cookie
             };
         }
+    }
+
+    add = async () =>{
+        var s = document.cookie.split(" ");
+        var token = s[0];
+        var email = s[1];
+        const URL = 'https://newpantry.herokuapp.com/api/favorites';
+        const body = JSON.stringify({email: email});
+        try{
+            const response = await fetch(URL, {
+                method: 'POST',
+                body: body,
+                headers: {
+                'Content-Type': 'application/json', 
+                 'Authorization': token
+                },
+            });
+            const json = await response.json();
+        } catch (error){
+            console.log(error);
+        }; 
+
     }
 
     favoritesButton(){
@@ -91,10 +114,9 @@ export default class FavoritesPage extends Component{
                             </tr>
                         </table>
                     </div>
-                    
                 </div>
                 <div className="favorites" id="favorites">
-                    
+                    <FavGrid></FavGrid>
                 </div>
             </div>
         );
