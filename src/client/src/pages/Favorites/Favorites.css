@@ -137,7 +137,7 @@
 
 
 /* No scrollbar shown, just scroll */
-::-webkit-scrollbar{
+.pantry::-webkit-scrollbar {
     visibility: hidden;
 }
 
