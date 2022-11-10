@@ -1,4 +1,5 @@
 import LandingPageScroll from './pages/LandingPage/LandingPageScroll';
+import React from 'react';
 import './App.css';
 
 

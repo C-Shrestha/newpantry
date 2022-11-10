@@ -34,13 +34,8 @@ export default class Login extends Component{
                 },
             });
             const json = await response.json();
-            console.log(json);
             const token = response.headers.get("Authorization");
-            for (var pair of response.headers.entries()) {
-                console.log(pair[0]+ ': '+ pair[1]);
-             }
-            console.log("Token");
-            console.log(token);
+            document.cookie = token;
         } catch (error){
             console.log(error);
         };

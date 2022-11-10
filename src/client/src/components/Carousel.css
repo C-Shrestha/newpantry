@@ -1,5 +1,7 @@
 .carousel{
+    position: relative;
     overflow: hidden;
+    height: 100px;
 }
 
 .inner{
@@ -33,14 +35,14 @@
 
 .indicators .prev{
     position: absolute;
-    top: 27.75%;
+    margin-top: -60px;
     left: -0.5%;
     background-color: none;
 }
 
 .indicators .next{
     position: absolute;
-    top: 27.75%;
+    margin-top: -60px;
     right: 1%;
     background-color: none;
 }

@@ -7,7 +7,7 @@ img{
 .nav-bar{
     display: grid;
     justify-content: center;
-    grid-template-columns: 25% 20% 20% 35%;
+    grid-template-columns: 25% 20% 20% 27.5% 7.5%;
 }
 
 .li{
@@ -56,6 +56,10 @@ img{
     color: #A5BA78;
 }
 
-.carousel{
-    margin-top: 2%;
+/* Styling for the profile icon */
+.profile-pic{
+    color: #4F5E30;
+    cursor: pointer;
+    height: 48px;
+    width: 48px;
 }

@@ -6,18 +6,56 @@ import "./FoodGrid.css";
 
 export const FoodGrid = () => {
   const [meals, setMeals] = useState([]);
-    const [latestMeals, setLatestMeals] = useState([]);
+  const [latestMeals, setLatestMeals] = useState([]);
+  var seasonalMeals = [];
 
-  const getRandomMeals = async () => {
+  const getSeasonalMeals = async () => {
     try {
       const response = await fetch(
-        'https://www.themealdb.com/api/json/v2/9973533/randomselection.php',
+        'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52784',
       );
       const jsonMeals = await response.json();
-      setMeals(jsonMeals.meals.slice(5));
+      seasonalMeals.push(jsonMeals.meals[0]);
     } catch (error) {
       console.log(error);
     }
+    try {
+      const response = await fetch(
+        'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52866',
+      );
+      const jsonMeals = await response.json();
+      seasonalMeals.push(jsonMeals.meals[0]);
+    } catch (error) {
+      console.log(error);
+    }
+    try {
+      const response = await fetch(
+        'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52857',
+      );
+      const jsonMeals = await response.json();
+      seasonalMeals.push(jsonMeals.meals[0]);
+    } catch (error) {
+      console.log(error);
+    }
+    try {
+      const response = await fetch(
+        'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52994',
+      );
+      const jsonMeals = await response.json();
+      seasonalMeals.push(jsonMeals.meals[0]);
+    } catch (error) {
+      console.log(error);
+    }
+    try {
+      const response = await fetch(
+        'https://www.themealdb.com/api/json/v1/1/lookup.php?i=52845',
+      );
+      const jsonMeals = await response.json();
+      seasonalMeals.push(jsonMeals.meals[0]);
+    } catch (error) {
+      console.log(error);
+    }
+    setMeals(seasonalMeals);
   };
 
   const getLastestMeals = async () => {
@@ -26,6 +64,7 @@ export const FoodGrid = () => {
         'https://www.themealdb.com/api/json/v2/9973533/latest.php',
       );
       const jsonMeals = await response.json();
+      console.log(jsonMeals.meals);
       setLatestMeals(jsonMeals.meals);
     } catch (error) {
       console.log(error);
@@ -33,11 +72,10 @@ export const FoodGrid = () => {
   };
 
   useEffect(() => {
-    getRandomMeals();
+    getSeasonalMeals();
     getLastestMeals();
   }, []);
 
-  console.log(JSON.stringify(meals[0]));
   return (
         <div className="foodGrid">
             <h1>SEASONAL RECOMENDATIONS</h1>
