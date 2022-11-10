@@ -37,14 +37,14 @@ export default class FavoritesPage extends Component{
         return(
             <div className='landing'>
                 <div className="nav-bar">
-                    <a href="/">
+                    <div><a href="/">
                         <img class ="pantry-pic" src="/PantryHorizontal.png" alt="pantry icon"/>    
-                    </a>
-                    <a class="links" href="/home">Home</a>
-                    <a class="links" href="/favorites" id="active">Favorites</a>
-                    <div className="search-bar">
-                        <FontAwesomeIcon class="search-pic" icon={faMagnifyingGlass} />
-                        <input></input>
+                    </a></div>
+                    <div className="li"><a class="links" href="/home">Home</a></div>
+                    <div className="li"><a class="links" href="/favorites"id="active">Favorites</a></div>
+                    <div className="li" >
+                        <FontAwesomeIcon className="search-pic" id="search" icon={faMagnifyingGlass}/>
+                        <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon}></input>
                     </div>
                 </div>
                 <div className="select">

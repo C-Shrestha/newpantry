@@ -1,0 +1,59 @@
+.foodGrid h1{
+    color: #EA862D;
+    font-weight: 60%;
+    font-size: 3.5vw;
+    font-family: 'Barlow Semi Condensed';
+    padding-left: 4.5%;
+    margin-top: -2.5%;
+    margin-bottom: -2.5%;
+}
+
+#t {
+    color: #5E5684;
+    margin-top: -1%;
+}
+
+.card{
+    height: 400px;
+    color: white; 
+    opacity: 100%; 
+    border-radius: 20px; 
+    object-fit: contain;
+    position: relative;
+}
+.title{
+    bottom: 0px;
+    left: 0px;
+    font-family: 'Barlow Semi Condensed';
+    font-weight: bolder;
+    font-size: 2.5vw;
+    text-align: left;
+    bottom: 0px;
+    background-color: #e2ab7a;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    opacity: 90%;
+    color: white;
+    padding: 1% 1% 1% 1%;
+}
+
+#trend{
+    background-color: #A5BA78;  
+}
+
+.heartbtn{
+    border-radius: 50%;
+    width: 10%;
+    height: 13%;
+    border: none;
+    color: white;
+    background-color: #EA862D;
+    right: 15px;
+    bottom: 15px;
+    position: absolute;
+    box-shadow: inset 2px 2px 3px rgb(49, 49, 49);
+}
+
+#trending {
+    background-color: #FABC4F;
+}

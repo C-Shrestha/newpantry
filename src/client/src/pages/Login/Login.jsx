@@ -19,33 +19,31 @@ export default class Login extends Component{
         });
     }
     
-    onSubmit = (event) => {
+    onSubmit = async (event) => {
         event.preventDefault();
         var md5 = require('md5');
-        this.state.password = md5(this.state.password);
-        fetch('https://newpantry.herokuapp.com/api/login', {
-            method: 'POST',redirect: 'follow',
-            body: JSON.stringify(this.state),
-            headers: {
-            'Content-Type': 'application/json'
-            }
-        })
-        .then(res => {
-            if (res.status === 200) {
-                console.log(res);
-                console.log(res.body);
-                console.log(res.headers);
-                window.location.href = "https://newpantry.herokuapp.com/home" ;
-            } else {
-                const error = new Error(res.error);
-                console.log(error)
-                throw error;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Error logging in please try again');
-        });
+        this.state.password = md5(this.state.password); 
+        const URL = 'https://newpantry.herokuapp.com/api/login';
+        const body = JSON.stringify({email: this.state.email, password: this.state.password});
+        try{
+            const response = await fetch(URL, {
+                method: 'POST',
+                body: body,
+                headers: {
+                'Content-Type': 'application/json'
+                },
+            });
+            const json = await response.json();
+            console.log(json);
+            const token = response.headers.get("Authorization");
+            for (var pair of response.headers.entries()) {
+                console.log(pair[0]+ ': '+ pair[1]);
+             }
+            console.log("Token");
+            console.log(token);
+        } catch (error){
+            console.log(error);
+        };
     } 
 
     // ******************* COMPONENT LIFECYCLE ******************* //

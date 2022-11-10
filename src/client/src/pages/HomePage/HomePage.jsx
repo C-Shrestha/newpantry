@@ -1,24 +1,35 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import Carousel, { CarouselItem } from "../../components/Carousel";
+import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
+import FoodGrid from '../../components/FoodGrid';
 import React, {Component} from 'react';
 import './HomePage.css';
 
 
+
 export default class HomePage extends Component{
+    
+    hideIcon(){
+        var search = document.getElementById("search");
+        search.style.visibility = "hidden";
+    }
+    showIcon(){
+        var search = document.getElementById("search");
+        search.style.visibility = "visible";
+    }
 
     render(){
         return(
             <div className='landing'>
                 <div className="nav-bar">
-                    <a href="/">
+                    <div><a href="/">
                         <img class ="pantry-pic" src="/PantryHorizontal.png" alt="pantry icon"/>    
-                    </a>
-                    <a class="links" href="/home" id="active">Home</a>
-                    <a class="links" href="/favorites">Favorites</a>
-                    <div className="search-bar">
-                        <FontAwesomeIcon class="search-pic" icon={faMagnifyingGlass} />
-                        <input></input>
+                    </a></div>
+                    <div className="li"><a class="links" href="/home" id="active">Home</a></div>
+                    <div className="li"><a class="links" href="/favorites">Favorites</a></div>
+                    <div className="li" >
+                        <FontAwesomeIcon className="search-pic" id="search" icon={faMagnifyingGlass}/>
+                        <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon}></input>
                     </div>
                 </div>
                 <div className="carousel">
@@ -39,12 +50,7 @@ export default class HomePage extends Component{
                         <CarouselItem>Misc</CarouselItem>
                     </Carousel>
                 </div>
-                <div className="seasonal">
-
-                </div>
-                <div className="trending">
-                    
-                </div>
+                <FoodGrid></FoodGrid>
             </div>
         );
     }
