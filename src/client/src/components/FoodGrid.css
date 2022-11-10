@@ -54,8 +54,11 @@
     bottom: 15px;
     position: absolute;
     box-shadow: inset 2px 2px 3px rgb(49, 49, 49);
+    z-index: 10px;
 }
-
+#heart {
+    background-color: #E54829; 
+}
 #trending {
     background-color: #FABC4F;
 }
