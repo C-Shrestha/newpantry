@@ -40,6 +40,7 @@ export default class SignUp extends Component{
             });
             const json = await response.json();
             const token = response.headers.get("Authorization");
+            window.location.href = "https://newpantry.herokuapp.com/login";
         } catch (error){
             console.error(error);
         };
