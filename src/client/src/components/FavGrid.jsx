@@ -1,11 +1,12 @@
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
-import { faHeart, faUnderline } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faCircle } from '@fortawesome/free-solid-svg-icons';
 import React, {useEffect, useState} from 'react';
-import {Grid, Modal, Box, Typography} from '@mui/material'
+import {Grid, Modal, Box} from '@mui/material'
 import "./FoodGrid.css";
 
 export const FavGrid = () => {
   const [meals, setFavMeals] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
   const [openModal, setOpenModal] = useState();
 
   var favMeals = [];
@@ -51,18 +52,6 @@ export const FavGrid = () => {
     getFavMeals();
   }, []);
 
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
-
   const handleRequestClick = async (e, meal) => {
     e.stopPropagation()
     var s = document.cookie.split(" ");
@@ -84,18 +73,44 @@ export const FavGrid = () => {
         console.log(error);
     }; 
     window.location.reload();
-} 
+}
+
+const getIngredients = (meal) => {
+  console.log("in function"); 
+  let food = [];
+  for(let i =0; i<20; i++){
+    let ingredient = `strIngredient${i+1}`;
+    let measurement = `strMeasure${i+1}`;
+    if(meal[ingredient] !== ""){
+      food.push(meal[measurement] + " " + meal[ingredient]);
+    }
+  }
+  setIngredients(food);
+}
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '80vw',
+  height: '40vw',
+  bgcolor: '#4F5E30',
+  color: 'white',
+  fontFamily: 'Barlow Semi Condensed',
+  p: 4,
+};
 
   return (
         <div className="foodGrid">
             <Grid container spacing={{ xs: 2, md: 8 }} columns={{ xs: 4, sm: 8, md: 12 }} p={8}>
             {meals.map((meal) => (
                 <Grid item xs={2} sm={4} md={4} key={meal.idMeal}>
-                      <div onClick={() => setOpenModal(meal.idMeal)} className="card" 
+                      <div onClick={() => {setOpenModal(meal.idMeal); getIngredients(meal);}} className="card" 
                       style={{
                           backgroundImage: `url(${meal.strMealThumb})`,
                       }} >
-                      <div className="title">{meal.strMeal}</div>
+                      <div className="title" id="fav">{meal.strMeal}</div>
                       <button onClick={(event) => handleRequestClick(event, meal.strMeal)} className='heartbtn' id="heart"><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
                       </div>
                     <Modal
@@ -104,14 +119,25 @@ export const FavGrid = () => {
                       aria-labelledby="modal-modal-title"
                       aria-describedby="modal-modal-description"
                     >
-                      <Box sx={style}>
-                        <Typography id="modal-modal-title" variant="h6" component="h2">
+                     <Box sx={style}>
+                        <div className="name">
                           {meal.strMeal}
-                          <img src={meal.strMealThumb} alt="food"></img>
-                        </Typography>
-                        <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                          {meal.strInstructions}
-                        </Typography>
+                        </div>
+                        <div className="grid">
+                          <div className="gridItem">
+                            <text>INSTRUCTIONS</text><br/>
+                            <div className='list2'>{ingredients.map((ing) => (
+                              <div className="listI">
+                                <FontAwesomeIcon id="circle" icon={faCircle} transform="shrink-7"/>&nbsp;&nbsp;{ing}
+                              </div>
+                            ))}</div><br/>
+                            <text>DIRECTIONS</text><br/>
+                            <div className="direct">{meal.strInstructions}</div>
+                          </div>
+                          <div className="gridItem">
+                            <img src={meal.strMealThumb} alt="food"></img>
+                          </div>
+                        </div>
                       </Box>
                     </Modal>
                 </Grid>
