@@ -2,30 +2,38 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user');
-const { genToken } = require('../utils/genJWT');
+const { verifyEmail, sendConfirmationEmail } = require('../utils/emailUtils');
+const { genToken } = require('../utils/jwtUtils');
 
 router.post('/', async (req, res) => {
-  const newUser = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: req.body.password,
-    profilePicture: req.body.profilePicture
-  });
-
-  await User.findOne({ email: newUser.email }).then((user) => {
+  await User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
-      res.status(400).send("User already exists");
+      res.status(400).send('User already exists');
     } else {
-      newUser.save().then((user) => {
-        const token = genToken({ email: newUser.email });
-        res.status(200).set("authorization", token).send(user);
-      }).catch((err) => {
-        res.status(400).send(err);
+      verifyEmail(req.body.email).then((isValid) => {
+        if (true) {
+          const newUser = new User({
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            password: req.body.password,
+            profilePicture: req.body.profilePicture,
+            confirmToken: genToken({ email: req.body.email }, process.env.CONF_JWT_SECRET),
+            valid: false
+          });
+          newUser.save().then((user) => {
+            sendConfirmationEmail(newUser.email, genToken({ email: newUser.email }, process.env.CONF_JWT_SECRET));
+            res.status(200).send("User created - please confirm new user's email address");
+          }).catch((err) => {
+            res.status(400).send("Failed to create user: " + err);
+          });
+        } else {
+          res.status(400).send('Invalid email');
+        }
       });
     }
   }).catch((err) => {
-    res.status(400).send(err);
+    res.status(400).send("Could not search for user: " + err);
   });
 });
 

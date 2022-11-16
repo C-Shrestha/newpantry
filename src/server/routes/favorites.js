@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user');
-const { authToken } = require('../utils/authJWT');
+const { authToken } = require('../utils/jwtUtils');
 
 router.get('/', authToken, async(req, res) => {
   await User.findOne({ email: req.body.email }).then((user) => {

@@ -75,6 +75,9 @@ app.use('/api/favorites', favorites);
 const categories = require('./src/server/routes/categories');
 app.use('/api/categories', categories);
 
+const confirmEmail = require('./src/server/routes/confirmEmail');
+app.use('/api/confirmEmail', confirmEmail);
+
 app.listen(port, () => {
   console.log('-----PORT OPEN---SERVER CHECK VALID------')
 });
