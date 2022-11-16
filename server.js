@@ -78,6 +78,9 @@ app.use('/api/categories', categories);
 const confirmEmail = require('./src/server/routes/confirmEmail');
 app.use('/api/confirmEmail', confirmEmail);
 
+const editProfile = require('./src/server/routes/editProfile');
+app.use('/api/editProfile', editProfile);
+
 app.listen(port, () => {
   console.log('-----PORT OPEN---SERVER CHECK VALID------')
 });
