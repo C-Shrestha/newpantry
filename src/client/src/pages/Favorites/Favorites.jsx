@@ -115,7 +115,7 @@ export default class FavoritesPage extends Component{
                         </table>
                     </div>
                 </div>
-                <div className="favorites">
+                <div className="favorites" id="favorites">
                     <FavGrid></FavGrid>
                 </div>
             </div>

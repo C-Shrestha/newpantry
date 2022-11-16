@@ -38,6 +38,9 @@
     color: white;
     padding: 1% 1% 1% 1%;
 }
+#fav {
+    background-color: #4F5E30;
+}
 
 #trend{
     background-color: #A5BA78;  
@@ -61,4 +64,50 @@
 }
 #trending {
     background-color: #FABC4F;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: 85%;
+}
+.gridItem {
+    padding: 3% 3% 3% 3% ;
+    display: absolute;
+    overflow-y: scroll;
+    font-size: 1.3vw;
+}
+.gridItem::-webkit-scrollbar {
+    visibility: hidden;
+}
+.gridItem img{
+    width: 90%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 20px;
+}
+.name{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 3.5vw;
+}
+text{
+    font-size: 2.1vw;
+    font-weight: bolder;
+    color: #A5BA78;
+}
+.list2{
+    padding-top: 2%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.listI{
+    font-size: 1.3vw;
+}
+#circle{
+    color:#FABC4F
+}
+.direct{
+    padding-top: 2%;
 }
