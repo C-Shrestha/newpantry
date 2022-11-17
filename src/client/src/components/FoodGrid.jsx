@@ -9,6 +9,7 @@ export const FoodGrid = () => {
   const [latestMeals, setLatestMeals] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [openModal, setOpenModal] = useState();
+  const [heart, setHeart] = useState([]);
 
   var seasonalMeals = [];
 
@@ -73,10 +74,38 @@ export const FoodGrid = () => {
       console.log(error);
     }
   };
+  
+  /* duplicate function as handleRequestClick
+  * needed to load favorite recipes before a click 
+  * has been made to show red favorited recipes
+  */
+  const getHearts = async () => {
+    var s = document.cookie.split(" ");
+    var token = s[0];
+    var email = s[1];
+    const URL = 'https://newpantry.herokuapp.com/api/favorites';
+    const body = JSON.stringify({email: email});
+    try{
+        const response = await fetch(URL, {
+            method: 'POST',
+            body: body,
+            headers: {
+            'Content-Type': 'application/json', 
+             'Authorization': token
+            },
+        });
+        const json = await response.json();    
+        console.log(json);
+        setHeart(json);
+    } catch (error){
+        console.log(error);
+    }; 
+  }
 
   useEffect(() => {
     getSeasonalMeals();
     getLastestMeals();
+    getHearts();
   }, []);
 
   const style = {
@@ -93,7 +122,6 @@ export const FoodGrid = () => {
   };
 
   const handleRequestClick = async (e, meal) => {
-
     e.stopPropagation()
     var s = document.cookie.split(" ");
     var token = s[0];
@@ -109,10 +137,12 @@ export const FoodGrid = () => {
              'Authorization': token
             },
         });
-        const json = await response.json();      
+        const json = await response.json();    
+        console.log(json);
+        setHeart(json);
     } catch (error){
         console.log(error);
-    };
+    }; 
 } 
 
 const getIngredients = (meal) => {
@@ -140,7 +170,8 @@ const getIngredients = (meal) => {
                           backgroundImage: `url(${meal.strMealThumb})`,
                       }} >
                       <div className="title">{meal.strMeal}</div>
-                      <button onClick={(event) => handleRequestClick(event, meal.strMeal)} className='heartbtn'><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
+                      <button style={{backgroundColor: heart.includes(meal.strMeal) ? "#E54829": "#EA862D"}}
+                       onClick={(event) => handleRequestClick(event, meal.strMeal)} className='heartbtn'><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
                       </div>
                       
                       <Modal
@@ -183,7 +214,8 @@ const getIngredients = (meal) => {
                      backgroundImage: `url(${meall.strMealThumb})`,
                  }}>
                  <div className="title" id="trend">{meall.strMeal}</div>
-                 <button onClick={(event) => handleRequestClick(event, meall.strMeal)} className='heartbtn' id="trending"><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
+                 <button style={{backgroundColor: heart.includes(meall.strMeal) ? "#E54829": "#FABC4F"}}
+                  onClick={(event) => handleRequestClick(event, meall.strMeal)} className='heartbtn' id="trending"><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
                  </div>
                  <Modal
                       open={openModal === meall.idMeal}
