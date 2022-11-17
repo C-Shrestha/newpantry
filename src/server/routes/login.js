@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user');
-const { genToken } = require('../utils/genJWT');
+const { genToken } = require('../utils/jwtUtils');
 
 router.post('/', async (req, res) => {
   const loginUser = {
@@ -13,8 +13,12 @@ router.post('/', async (req, res) => {
   await User.findOne({ email: loginUser.email }).then((user) => {
     if (user) {
       if (user.password === loginUser.password) {
-        const token = genToken({ email: loginUser.email });
-        res.status(200).set("authorization", token).send(user);
+        if (user.valid) {
+          const token = genToken({ email: loginUser.email }, process.env.JWT_SECRET);
+          res.status(200).set("authorization", token).send(user);
+        } else {
+          res.status(401).send("User email not verified");
+        }
       } else {
         res.status(400).send("Invalid password");
       }
