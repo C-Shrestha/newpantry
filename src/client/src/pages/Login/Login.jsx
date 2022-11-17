@@ -49,14 +49,17 @@ export default class Login extends Component{
                 else if(response.status === 200){
                     json = await response.json();
                     const token = response.headers.get("Authorization");
-                    document.cookie = token + " "+ this.state.email;
+                    localStorage.setItem('token-info', token);
+                    localStorage.setItem('email-info', this.state.email);
+                    localStorage.setItem('pass-info', this.state.password);
                     window.location.href = "https://newpantry.herokuapp.com/home";
                 }
                 return json;
             }).then(function(data){
-                console.log(data);
-                document.cookie += data.profilePicture;
-
+                localStorage.setItem('fname-info', data.firstName);
+                localStorage.setItem('lname-info', data.lastName);
+                localStorage.setItem('picture-info', data.profilePicture);
+                console.log(document.cookie);
             });
         } catch (error){
             console.log(error);

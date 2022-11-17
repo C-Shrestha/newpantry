@@ -1,4 +1,4 @@
-import { faMagnifyingGlass, faUser, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import React, {Component} from 'react';
 import FavGrid from "../../components/FavGrid"
@@ -9,20 +9,21 @@ export default class FavoritesPage extends Component{
 
     constructor(props){
         super(props);
-        if(document.cookie == ""){
+        if(localStorage.getItem('token-info') == null){
             window.location.href = "https://newpantry.herokuapp.com"
         }
         else{
             this.state = {
-                token: document.cookie
+                token: localStorage.getItem('token-info'),
+                email: localStorage.getItem('email-info'),
+                profilePicture: localStorage.getItem('picture-info')
             };
         }
     }
 
     add = async () =>{
-        var s = document.cookie.split(" ");
-        var token = s[0];
-        var email = s[1];
+        var token = localStorage.getItem('token-info');
+        var email = localStorage.getItem('email-info');
         const URL = 'https://newpantry.herokuapp.com/api/favorites';
         const body = JSON.stringify({email: email});
         try{
@@ -67,6 +68,16 @@ export default class FavoritesPage extends Component{
         pantryDiv.style.visibility = "visible";
     }
 
+    logOut(){
+        localStorage.removeItem('token-info');
+        localStorage.removeItem('email-info');
+        localStorage.removeItem('pass-info');
+        localStorage.removeItem('fname-info');
+        localStorage.removeItem('lname-info');
+        localStorage.removeItem('picture-info');
+        window.location.reload();
+    }
+
     render(){
         return(
             <div className='landing'>
@@ -81,7 +92,15 @@ export default class FavoritesPage extends Component{
                         <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon}></input>
                     </div>
                     <div className="li">
-                        <FontAwesomeIcon class="profile-pic" icon={faUser} />
+                        <div className="dropdown">
+                            <button class="dropbtn">
+                                <img class="profile-pic" src={this.state.profilePicture} alt="profile pic"/>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="/profile" id="profile">Profile</a>
+                                <a onClick={this.logOut} id="logout">Logout</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className="select">

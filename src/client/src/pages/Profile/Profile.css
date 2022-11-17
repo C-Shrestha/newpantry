@@ -1,0 +1,72 @@
+.profileDiv h1{
+    font-size: 4vw;
+    font-family: 'Barlow Semi Condensed';
+    font-weight: bolder;
+    color: #4F5E30;
+    text-align: center;          
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profileDiv a{
+    text-decoration: none;
+    font-family: 'Barlow Semi Condensed';
+    font-weight: medium;
+    font-size: 1.75vw;
+    color: #A5BA78; 
+}
+
+.profileDiv text{
+    font-family: 'Barlow Semi Condensed';
+    color: #4F5E30;
+    text-align: center;
+    font-weight: medium;
+    font-size: 1.75vw;
+}
+
+.profileDiv input[type=submit]{
+    font-family: 'Barlow Semi Condensed';
+    font-size: 1.75vw;
+    font-weight: 500px;
+    border: none;
+    cursor: pointer;
+    padding: 10px 10px 10px 10px;
+    background-color: #A5BA78;
+    border-radius: 20px;
+    color: white;
+}
+
+.profileDiv input{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: 'Barlow Semi Condensed';
+    font-size: 1.75vw;
+    font-weight: medium;
+    border: none;
+    outline: none;
+    background-color: #D9D9D9;
+    border-radius: 20px;
+    text-align: center;
+    color: #797979;
+    width: 90%;
+    margin-top: 10px;
+    padding: 10px 10px 10px 10px;
+}
+
+.profileDiv{
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid red; */
+    margin: auto;
+}
+
+.formPR{
+    display: block;
+    margin: auto;
+    padding: 10px 10px 10px 10px;
+    padding-right: 0;
+    margin-top: 3.5%;
+    width: 25%;
+    /* border: 2px solid red; */
+}

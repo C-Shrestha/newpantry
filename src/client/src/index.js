@@ -3,6 +3,7 @@ import Favorites from "./pages/Favorites/Favorites";
 import HomePage from "./pages/HomePage/HomePage";
 import reportWebVitals from './reportWebVitals';
 import SignUp from "./pages/SignUp/SignUp";
+import Profile from "./pages/Profile/Profile";
 import Login from './pages/Login/Login';
 import ReactDOM from 'react-dom/client';
 import React from 'react';
@@ -18,6 +19,7 @@ root.render(
       <Route path="/signup" element={<SignUp />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/favorites" element={<Favorites />} />
+      <Route path="/profile" element={<Profile />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")

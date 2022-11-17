@@ -1,4 +1,4 @@
-import { faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Carousel, { CarouselItem } from "../../components/Carousel";
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import FoodGrid from '../../components/FoodGrid';
@@ -9,17 +9,15 @@ export default class HomePage extends Component{
     
     constructor(props){
         super(props);
-        if(document.cookie == ""){
+        if(localStorage.getItem('token-info') == null){
             window.location.href = "https://newpantry.herokuapp.com"
         }
         else{
-            var cookies = document.cookie.split(' ');
             this.state = {
-                token: cookies[0],
-                email: cookies[1],
-                profilePicture: 'https://i.imgur.com/cEw6FVg.png'
+                token: localStorage.getItem('token-info'),
+                email: localStorage.getItem('email-info'),
+                profilePicture: localStorage.getItem('picture-info')
             };
-            this.getPicture();
         }
     }
 
@@ -32,24 +30,14 @@ export default class HomePage extends Component{
         search.style.visibility = "visible";
     }
 
-    getPicture = async() =>{
-        const URL = 'https://newpantry.herokuapp.com/api/users';
-        const body = JSON.stringify({email: this.state.email});
-        try{
-            const response = await fetch(URL, {
-                method: 'POST',
-                body: body,
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': this.state.token
-                },
-            }).then(
-                response => { 
-                console.log(response);
-            });
-        } catch (error){
-            console.warn(error);
-        };
+    logOut(){
+        localStorage.removeItem('token-info');
+        localStorage.removeItem('email-info');
+        localStorage.removeItem('pass-info');
+        localStorage.removeItem('fname-info');
+        localStorage.removeItem('lname-info');
+        localStorage.removeItem('picture-info');
+        window.location.reload();
     }
 
     render(){
@@ -66,7 +54,15 @@ export default class HomePage extends Component{
                         <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon}></input>
                     </div>
                     <div className="li">
-                        <FontAwesomeIcon class="profile-pic" icon={faUser} />
+                        <div className="dropdown">
+                            <button class="dropbtn">
+                                <img class="profile-pic" src={this.state.profilePicture} alt="profile pic"/>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="/profile" id="profile">Profile</a>
+                                <a onClick={this.logOut} id="logout">Logout</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <Carousel>
