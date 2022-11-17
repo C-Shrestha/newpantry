@@ -33,11 +33,31 @@ export default class Login extends Component{
                 headers: {
                 'Content-Type': 'application/json'
                 },
+            }).then(
+                async (response) => { 
+                var json = "";
+                if (response.status === 400){
+                    var span = document.getElementById("errorSpan");
+                    span.innerHTML = "Invalid email or password";
+                    console.log("Invalid email or password");
+                }
+                else if(response.status === 401){
+                    var span = document.getElementById("errorSpan");
+                    span.innerHTML = "User email not verified";
+                    console.log("User email not verified");
+                }
+                else if(response.status === 200){
+                    json = await response.json();
+                    const token = response.headers.get("Authorization");
+                    document.cookie = token + " "+ this.state.email;
+                    window.location.href = "https://newpantry.herokuapp.com/home";
+                }
+                return json;
+            }).then(function(data){
+                console.log(data);
+                document.cookie += data.profilePicture;
+
             });
-            const json = await response.json();
-            const token = response.headers.get("Authorization");
-            document.cookie = token + " "+ this.state.email;
-            window.location.href = "https://newpantry.herokuapp.com/home";
         } catch (error){
             console.log(error);
         };
