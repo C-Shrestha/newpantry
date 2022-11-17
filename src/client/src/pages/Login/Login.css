@@ -70,3 +70,9 @@
     padding-top: 10%;
     position: relative;
 }
+
+#errorSpan{
+    color: #E54829;
+    text-align: center;
+    margin-top: -10%;
+}

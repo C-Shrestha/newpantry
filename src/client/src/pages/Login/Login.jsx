@@ -1,6 +1,7 @@
 import ViewObject from '../ViewObject/ViewObject';
 import React, {Component} from 'react';
 import './Login.css';
+import { json } from 'body-parser';
 
 export default class Login extends Component{
     
@@ -9,7 +10,8 @@ export default class Login extends Component{
         this.canvasRef = React.createRef();
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            profilePicture: ''
           };
     }  
     handleInputChange = (event) => {
@@ -68,6 +70,7 @@ export default class Login extends Component{
             <div className="loginDiv">
                 <form className="form" onSubmit={this.onSubmit}>
                     <h1>LOGIN</h1>
+                    <h2 id="errorSpan"></h2>
                     <input
                         type="email"
                         name="email"

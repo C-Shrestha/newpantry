@@ -13,9 +13,13 @@ export default class HomePage extends Component{
             window.location.href = "https://newpantry.herokuapp.com"
         }
         else{
+            var cookies = document.cookie.split(' ');
             this.state = {
-                token: document.cookie
+                token: cookies[0],
+                email: cookies[1],
+                profilePicture: 'https://i.imgur.com/cEw6FVg.png'
             };
+            this.getPicture();
         }
     }
 
@@ -26,6 +30,26 @@ export default class HomePage extends Component{
     showIcon(){
         var search = document.getElementById("search");
         search.style.visibility = "visible";
+    }
+
+    getPicture = async() =>{
+        const URL = 'https://newpantry.herokuapp.com/api/users';
+        const body = JSON.stringify({email: this.state.email});
+        try{
+            const response = await fetch(URL, {
+                method: 'POST',
+                body: body,
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.state.token
+                },
+            }).then(
+                response => { 
+                console.log(response);
+            });
+        } catch (error){
+            console.warn(error);
+        };
     }
 
     render(){
