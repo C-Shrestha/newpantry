@@ -1,12 +1,15 @@
-.loginDiv h1{
+.profileDiv h1{
     font-size: 4vw;
     font-family: 'Barlow Semi Condensed';
     font-weight: bolder;
     color: #4F5E30;
-    text-align: center; 
+    text-align: center;          
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.loginDiv a{
+.profileDiv a{
     text-decoration: none;
     font-family: 'Barlow Semi Condensed';
     font-weight: medium;
@@ -14,20 +17,18 @@
     color: #A5BA78; 
 }
 
-.loginDiv text{
+.profileDiv text{
     font-family: 'Barlow Semi Condensed';
     color: #4F5E30;
     text-align: center;
-    margin-left: 10%;
     font-weight: medium;
     font-size: 1.75vw;
 }
 
-.loginDiv button{
+.profileDiv input[type=submit]{
     font-family: 'Barlow Semi Condensed';
     font-size: 1.75vw;
     font-weight: 500px;
-    width: 105%;
     border: none;
     cursor: pointer;
     padding: 10px 10px 10px 10px;
@@ -36,7 +37,9 @@
     color: white;
 }
 
-.loginDiv input{
+.profileDiv input{
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
     font-family: 'Barlow Semi Condensed';
     font-size: 1.75vw;
     font-weight: medium;
@@ -46,33 +49,24 @@
     border-radius: 20px;
     text-align: center;
     color: #797979;
-    width: 100%;
+    width: 90%;
     margin-top: 10px;
     padding: 10px 10px 10px 10px;
 }
 
-.loginDiv input[type=submit] {
-    font-family: 'Barlow Semi Condensed';
-    font-size: 1.75vw;
-    font-weight: 500px;
-    width: 105%;
-    border: none;
-    cursor: pointer;
+.profileDiv{
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid red; */
+    margin: auto;
+}
+
+.formPR{
+    display: block;
+    margin: auto;
     padding: 10px 10px 10px 10px;
-    background-color: #A5BA78;
-    border-radius: 20px;
-    color: white;
-}
-
-.form{
-    float: left;
-    padding-left: 20%;
-    padding-top: 10%;
-    position: relative;
-}
-
-#errorSpan{
-    color: #E54829;
-    text-align: center;
-    margin-top: -10%;
+    padding-right: 0;
+    margin-top: 3.5%;
+    width: 25%;
+    /* border: 2px solid red; */
 }

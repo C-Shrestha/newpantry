@@ -68,7 +68,6 @@ export const FoodGrid = () => {
         'https://www.themealdb.com/api/json/v2/9973533/latest.php',
       );
       const jsonMeals = await response.json();
-      console.log(jsonMeals.meals);
       setLatestMeals(jsonMeals.meals);
     } catch (error) {
       console.log(error);
@@ -80,9 +79,8 @@ export const FoodGrid = () => {
   * has been made to show red favorited recipes
   */
   const getHearts = async () => {
-    var s = document.cookie.split(" ");
-    var token = s[0];
-    var email = s[1];
+    var token = localStorage.getItem('token-info');
+    var email = localStorage.getItem('email-info');
     const URL = 'https://newpantry.herokuapp.com/api/favorites';
     const body = JSON.stringify({email: email});
     try{
@@ -91,11 +89,10 @@ export const FoodGrid = () => {
             body: body,
             headers: {
             'Content-Type': 'application/json', 
-             'Authorization': token
+            'Authorization': token
             },
         });
         const json = await response.json();    
-        console.log(json);
         setHeart(json);
     } catch (error){
         console.log(error);
@@ -123,9 +120,8 @@ export const FoodGrid = () => {
 
   const handleRequestClick = async (e, meal) => {
     e.stopPropagation()
-    var s = document.cookie.split(" ");
-    var token = s[0];
-    var email = s[1];
+    var token = localStorage.getItem('token-info');
+    var email = localStorage.getItem('email-info');
     const URL = 'https://newpantry.herokuapp.com/api/favorites';
     const body = JSON.stringify({email: email, favorite: meal});
     try{

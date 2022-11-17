@@ -9,7 +9,8 @@ export default class Login extends Component{
         this.canvasRef = React.createRef();
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            profilePicture: ''
           };
     }  
     handleInputChange = (event) => {
@@ -32,11 +33,34 @@ export default class Login extends Component{
                 headers: {
                 'Content-Type': 'application/json'
                 },
+            }).then(
+                async (response) => { 
+                var json = "";
+                if (response.status === 400){
+                    var span = document.getElementById("errorSpan");
+                    span.innerHTML = "Invalid email or password";
+                    console.log("Invalid email or password");
+                }
+                else if(response.status === 401){
+                    var span = document.getElementById("errorSpan");
+                    span.innerHTML = "User email not verified";
+                    console.log("User email not verified");
+                }
+                else if(response.status === 200){
+                    json = await response.json();
+                    const token = response.headers.get("Authorization");
+                    localStorage.setItem('token-info', token);
+                    localStorage.setItem('email-info', this.state.email);
+                    localStorage.setItem('pass-info', this.state.password);
+                    window.location.href = "https://newpantry.herokuapp.com/home";
+                }
+                return json;
+            }).then(function(data){
+                localStorage.setItem('fname-info', data.firstName);
+                localStorage.setItem('lname-info', data.lastName);
+                localStorage.setItem('picture-info', data.profilePicture);
+                console.log(document.cookie);
             });
-            const json = await response.json();
-            const token = response.headers.get("Authorization");
-            document.cookie = token + " "+ this.state.email;
-            window.location.href = "https://newpantry.herokuapp.com/home";
         } catch (error){
             console.log(error);
         };
@@ -68,6 +92,7 @@ export default class Login extends Component{
             <div className="loginDiv">
                 <form className="form" onSubmit={this.onSubmit}>
                     <h1>LOGIN</h1>
+                    <h2 id="errorSpan"></h2>
                     <input
                         type="email"
                         name="email"

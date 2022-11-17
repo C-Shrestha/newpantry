@@ -14,7 +14,7 @@ export default class SignUp extends Component{
             lastName: '',
             email: '',
             password: '',
-            profilePicture: '1.png',
+            profilePicture: 'https://i.imgur.com/cEw6FVg.png',
           };
     }
     handleInputChange = (event) => {
@@ -37,6 +37,13 @@ export default class SignUp extends Component{
                 headers: {
                 'Content-Type': 'application/json'
                 },
+            }).then(
+                response => { 
+                if (response.status === 400){
+                    var span = document.getElementById("errorSpan");
+                    span.innerHTML = "Invalid email or password";
+                    console.log("Invalid email or password");
+                }
             });
             const json = await response.json();
             const token = response.headers.get("Authorization");
@@ -46,30 +53,68 @@ export default class SignUp extends Component{
         };
     } 
 
-    changeProfilePictureRight(){
+    changeProfilePictureRight = () => {
         var curPicture = document.getElementById("profile-img");
-        var curPicIdx = curPicture.src[(curPicture.src.length - 5)];
-        if(curPicIdx == 6){
-            curPicIdx = 1;
+        var newSrc;
+        switch(curPicture.src){
+            case 'https://i.imgur.com/KxMOJIP.png':
+                newSrc = 'https://i.imgur.com/cEw6FVg.png';
+                break;
+            case 'https://i.imgur.com/sCjPtpC.png':
+                newSrc = 'https://i.imgur.com/KxMOJIP.png';
+                break;
+            case 'https://i.imgur.com/AeHX704.png':
+                newSrc = 'https://i.imgur.com/sCjPtpC.png';
+                break;
+            case 'https://i.imgur.com/JMhY6zW.png':
+                newSrc = 'https://i.imgur.com/AeHX704.png';
+                break;
+            case 'https://i.imgur.com/Ak6Q5eK.png':
+                newSrc = 'https://i.imgur.com/JMhY6zW.png';
+                break;
+            case 'https://i.imgur.com/cEw6FVg.png':
+                newSrc = 'https://i.imgur.com/Ak6Q5eK.png';
+                break;
+            default:
+                newSrc = 'https://i.imgur.com/cEw6FVg.png';
+                break;
         }
-        else{
-            curPicIdx++;
-        }
-        var newSrc = curPicture.src.substring(0, curPicture.src.length-5) + curPicIdx + curPicture.src.substring(curPicture.src.length-4);
         curPicture.src = newSrc;
+        this.setState({
+            profilePicture: newSrc
+        });
     }
 
-    changeProfilePictureLeft(){
+    changeProfilePictureLeft = () => {
         var curPicture = document.getElementById("profile-img");
-        var curPicIdx = curPicture.src[(curPicture.src.length - 5)];
-        if(curPicIdx == 1){
-            curPicIdx = 6;
+        var newSrc;
+        switch(curPicture.src){
+            case 'https://i.imgur.com/Ak6Q5eK.png':
+                newSrc = 'https://i.imgur.com/cEw6FVg.png';
+                break;
+            case 'https://i.imgur.com/cEw6FVg.png':
+                newSrc = 'https://i.imgur.com/KxMOJIP.png';
+                break;
+            case 'https://i.imgur.com/KxMOJIP.png':
+                newSrc = 'https://i.imgur.com/sCjPtpC.png';
+                break;
+            case 'https://i.imgur.com/sCjPtpC.png':
+                newSrc = 'https://i.imgur.com/AeHX704.png';
+                break;
+            case 'https://i.imgur.com/AeHX704.png':
+                newSrc = 'https://i.imgur.com/JMhY6zW.png';
+                break;
+            case 'https://i.imgur.com/JMhY6zW.png':
+                newSrc = 'https://i.imgur.com/Ak6Q5eK.png';
+                break;
+            default:
+                newSrc = 'https://i.imgur.com/cEw6FVg.png';
+                break;
         }
-        else{
-            curPicIdx--;
-        }
-        var newSrc = curPicture.src.substring(0, curPicture.src.length-5) + curPicIdx + curPicture.src.substring(curPicture.src.length-4);
         curPicture.src = newSrc;
+        this.setState({
+            profilePicture: newSrc
+        });
     }
 
     // ******************* COMPONENT LIFECYCLE ******************* //
@@ -101,7 +146,7 @@ export default class SignUp extends Component{
                     <button type="button" class="btn">
                         <FontAwesomeIcon class="caretBtn" icon={faCaretLeft} onClick={this.changeProfilePictureLeft}/>
                     </button>
-                    <img id="profile-img" src="/profileImages/1.png" alt="profile" value="1.png"></img>
+                    <img id="profile-img" src="https://i.imgur.com/cEw6FVg.png" alt="profile"></img>
                     <button type="button" class="btn">
                         <FontAwesomeIcon class="caretBtn" icon={faCaretRight} onClick={this.changeProfilePictureRight}/>
                     </button>

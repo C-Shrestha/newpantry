@@ -12,9 +12,8 @@ export const FavGrid = () => {
   var favMeals = [];
 
   const getFavMeals = async () => {
-    var s = document.cookie.split(" ");
-    var token = s[0];
-    var email = s[1];
+    var token = localStorage.getItem('token-info');
+    var email = localStorage.getItem('email-info');
     const URL = 'https://newpantry.herokuapp.com/api/favorites';
     const body = JSON.stringify({email: email});
     try{
@@ -54,9 +53,8 @@ export const FavGrid = () => {
 
   const handleRequestClick = async (e, meal) => {
     e.stopPropagation()
-    var s = document.cookie.split(" ");
-    var token = s[0];
-    var email = s[1];
+    var token = localStorage.getItem('token-info');
+    var email = localStorage.getItem('email-info');
     const URL = 'https://newpantry.herokuapp.com/api/favorites';
     const body = JSON.stringify({email: email, favorite: meal});
     try{

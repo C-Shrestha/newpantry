@@ -1,4 +1,4 @@
-import { faMagnifyingGlass, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Carousel, { CarouselItem } from "../../components/Carousel";
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import FoodGrid from '../../components/FoodGrid';
@@ -9,12 +9,14 @@ export default class HomePage extends Component{
     
     constructor(props){
         super(props);
-        if(document.cookie == ""){
+        if(localStorage.getItem('token-info') == null){
             window.location.href = "https://newpantry.herokuapp.com"
         }
         else{
             this.state = {
-                token: document.cookie
+                token: localStorage.getItem('token-info'),
+                email: localStorage.getItem('email-info'),
+                profilePicture: localStorage.getItem('picture-info')
             };
         }
     }
@@ -26,6 +28,16 @@ export default class HomePage extends Component{
     showIcon(){
         var search = document.getElementById("search");
         search.style.visibility = "visible";
+    }
+
+    logOut(){
+        localStorage.removeItem('token-info');
+        localStorage.removeItem('email-info');
+        localStorage.removeItem('pass-info');
+        localStorage.removeItem('fname-info');
+        localStorage.removeItem('lname-info');
+        localStorage.removeItem('picture-info');
+        window.location.reload();
     }
 
     render(){
@@ -42,7 +54,15 @@ export default class HomePage extends Component{
                         <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon}></input>
                     </div>
                     <div className="li">
-                        <FontAwesomeIcon class="profile-pic" icon={faUser} />
+                        <div className="dropdown">
+                            <button class="dropbtn">
+                                <img class="profile-pic" src={this.state.profilePicture} alt="profile pic"/>
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="/profile" id="profile">Profile</a>
+                                <a onClick={this.logOut} id="logout">Logout</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <Carousel>
