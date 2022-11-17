@@ -21,25 +21,25 @@ const verifyEmail = async (email) => {
 
 const sendConfirmationEmail = async (email, confirmToken) => {
   const message = {
-    from: 'Pantry <pantry@' + process.env.MAILGUN_DOMAIN + '>',
-    to: "deborah78@ethereal.email",
+    from: process.env.MAIL_USERNAME,
+    to: email,
     subject: "Pantry - Please Confirm Your Email Address",
     text: "Please confirm your email by clicking the following link: " + (process.env.NODE_ENV === "production" ? process.env.PROD_DOMAIN : process.env.DEV_DOMAIN) + "/confirmEmail/" + confirmToken
   }
-  const testAccount = await nodemailer.createTestAccount();
+
   const transporter = nodemailer.createTransport({
-    host: 'smtp.ethereal.email',
-    port: 587,
+    service: 'gmail',
     auth: {
-        user: testAccount.user,
-        pass: testAccount.pass
+      type: 'OAuth2',
+      user: process.env.MAIL_USERNAME,
+      pass: process.env.MAIL_PASSWORD,
+      clientId: process.env.OAUTH_CLIENT_ID,
+      clientSecret: process.env.OAUTH_CLIENT_SECRET,
+      refreshToken: process.env.OAUTH_REFRESH_TOKEN
     }
   });
 
-  let info = await transporter.sendMail(message);
-  console.log("Sending confirmation email to " + testAccount.user);
-  // console.log("Sending confirmation email to " + email);
-  console.log("Message preview URL: %s", nodemailer.getTestMessageUrl(info));
+  transporter.sendMail(message);
 };
 
 module.exports = { verifyEmail, sendConfirmationEmail };
