@@ -1,7 +1,6 @@
 import ViewObject from '../ViewObject/ViewObject';
 import React, {Component} from 'react';
 import './Login.css';
-import { json } from 'body-parser';
 
 export default class Login extends Component{
     
