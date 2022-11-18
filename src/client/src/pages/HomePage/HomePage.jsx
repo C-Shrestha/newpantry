@@ -1,5 +1,4 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import Carousel, { CarouselItem } from "../../components/Carousel";
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import FoodGrid from '../../components/FoodGrid';
 import React, {Component} from 'react';
@@ -65,22 +64,6 @@ export default class HomePage extends Component{
                         </div>
                     </div>
                 </div>
-                <Carousel>
-                    <CarouselItem>Beef</CarouselItem>
-                    <CarouselItem>Breakfast</CarouselItem>
-                    <CarouselItem>Chicken</CarouselItem>
-                    <CarouselItem>Dessert</CarouselItem>
-                    <CarouselItem>Goat</CarouselItem>
-                    <CarouselItem>Lamb</CarouselItem>
-                    <CarouselItem>Pasta</CarouselItem>
-                    <CarouselItem>Pork</CarouselItem>
-                    <CarouselItem>Seafood</CarouselItem>
-                    <CarouselItem>Side</CarouselItem>
-                    <CarouselItem>Starter</CarouselItem>
-                    <CarouselItem>Vegan</CarouselItem>
-                    <CarouselItem>Vegetarian</CarouselItem>
-                    <CarouselItem>Misc</CarouselItem>
-                </Carousel>
                 <FoodGrid></FoodGrid>
             </div>
         );
