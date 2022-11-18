@@ -30,8 +30,8 @@
     font-weight: bolder;
     font-size: 2.5vw;
     text-align: left;
+    /* background-color: #F4B278; */
     bottom: 0px;
-    background-color: #e2ab7a;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     opacity: 90%;
@@ -43,7 +43,7 @@
 }
 
 #trend{
-    background-color: #A5BA78;  
+    background-color: #958BC4;  
 }
 
 .heartbtn{
@@ -107,3 +107,114 @@ text{
 .direct{
     padding-top: 2%;
 }
+
+.carousel{
+    position: relative;
+    overflow: hidden;
+    height: 100px;
+}
+
+.inner{
+    width: 14.28%;
+    white-space: nowrap;
+    transition: transform 0.3s;
+}
+
+.carousel-item{
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: #A5BA78;
+    color: white;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.carousel-item:hover{
+    background-color: #4F5E30;
+}
+
+#carousel-item{
+    pointer-events: all;
+}
+
+.indicators{
+    height: 100px;
+}
+
+.indicators > button{
+    margin: 5px;
+    width: 35px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.indicators .prev{
+    position: absolute;
+    margin-top: -60px;
+    left: -0.5%;
+    background-color: none;
+}
+
+.indicators .next{
+    position: absolute;
+    margin-top: -60px;
+    right: 1%;
+    background-color: none;
+}
+
+.image{
+    height: 24px;
+    width: 24px;
+    position: absolute;
+    top: -10%;
+    background-color: none;
+    color: white;
+}
+
+@keyframes loading {
+    0% { transform: translate(-50%,-50%) rotate(0deg); }
+    100% { transform: translate(-50%,-50%) rotate(360deg); }
+  }
+  .loading div {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 20px solid #5e5684;
+    border-top-color: transparent;
+    border-radius: 50%;
+  }
+  .loading div {
+    animation: loading 0.75s linear infinite;
+    top: 100px;
+    left: 100px;
+    box-sizing: content-box; 
+  }
+  .loading-spinner {
+    width: 200px;
+    height: 200px;
+    display: inline-block;
+    overflow: hidden;
+    background: transparent;
+  }
+  .loading {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: translateZ(0) scale(1);
+    backface-visibility: hidden;
+    transform-origin: 0 0; /* see note above */
+  }
+
+  .loadingDiv{
+    position: absolute;
+    width: 100%;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+  }
+
