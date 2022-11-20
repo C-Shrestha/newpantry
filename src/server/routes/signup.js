@@ -10,26 +10,20 @@ router.post('/', async (req, res) => {
     if (user) {
       res.status(400).send('User already exists');
     } else {
-      verifyEmail(req.body.email).then((isValid) => {
-        if (true) {
-          const newUser = new User({
-            firstName: req.body.firstName,
-            lastName: req.body.lastName,
-            email: req.body.email,
-            password: req.body.password,
-            profilePicture: req.body.profilePicture,
-            confirmToken: genToken({ email: req.body.email }, process.env.CONF_JWT_SECRET),
-            valid: false
-          });
-          newUser.save().then((user) => {
-            sendConfirmationEmail(newUser.email, genToken({ email: newUser.email }, process.env.CONF_JWT_SECRET));
-            res.status(200).send("User created - please confirm new user's email address");
-          }).catch((err) => {
-            res.status(400).send("Failed to create user: " + err);
-          });
-        } else {
-          res.status(400).send('Invalid email');
-        }
+      const newUser = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        password: req.body.password,
+        profilePicture: req.body.profilePicture,
+        confirmToken: genToken({ email: req.body.email }, process.env.CONF_JWT_SECRET),
+        valid: false
+      });
+      newUser.save().then((user) => {
+        sendConfirmationEmail(newUser.email, genToken({ email: newUser.email }, process.env.CONF_JWT_SECRET));
+        res.status(200).send("User created - please confirm new user's email address");
+      }).catch((err) => {
+        res.status(400).send("Failed to create user: " + err);
       });
     }
   }).catch((err) => {
