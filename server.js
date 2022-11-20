@@ -44,10 +44,6 @@ app.use((req, res, next) =>
 });
 
 // Endpoints
-app.get('/api', (req, res) => {
-  res.send("Hello world!");
-});
-
 const signup = require('./src/server/routes/signup');
 app.use('/api/signup', signup);
 
