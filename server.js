@@ -15,14 +15,14 @@ app.use(cors());
 app.use(bodyParser.json());
 app.disable('x-powered-by');
 
-if (process.env.NODE_ENV === 'production') 
-{
-  app.use(express.static('src/client/build'));
+// if (process.env.NODE_ENV === 'production') 
+// {
+//   app.use(express.static('src/client/build'));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'src/client', 'build', 'index.html'));
-  });
-}
+//   app.get('*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname, 'src/client', 'build', 'index.html'));
+//   });
+// }
 
 const mongoose = require('mongoose');
 const MongoClient = require('mongodb').MongoClient; 
