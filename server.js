@@ -15,15 +15,6 @@ app.use(cors());
 app.use(bodyParser.json());
 app.disable('x-powered-by');
 
-// if (process.env.NODE_ENV === 'production') 
-// {
-//   app.use(express.static('src/client/build'));
-
-//   app.get('*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'src/client', 'build', 'index.html'));
-//   });
-// }
-
 const mongoose = require('mongoose');
 const MongoClient = require('mongodb').MongoClient; 
 const client = new MongoClient(dbURL);
@@ -83,6 +74,15 @@ app.use('/api/editProfile', editProfile);
 
 const pantry = require('./src/server/routes/pantry');
 app.use('/api/pantry', pantry);
+
+if (process.env.NODE_ENV === 'production') 
+{
+  app.use(express.static('src/client/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'src/client', 'build', 'index.html'));
+  });
+}
 
 app.listen(port, () => {
   console.log('-----PORT OPEN---SERVER CHECK VALID------')
