@@ -8,12 +8,12 @@ router.get('/:confirmToken', async (req, res) => {
     if (user) {
       user.valid = true;
       user.save();
-      res.status(200).type('html').send("Email confirmed - please close this tab and login");
+      res.status(200).type('json').send("Email confirmed - please close this tab and login");
     } else {
       res.status(400).send("Invalid token");
     }
   }).catch((err) => {
-    res.status(400).send(err);
+    res.status(404).send(err);
   });
 });
 
