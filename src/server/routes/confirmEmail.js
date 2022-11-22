@@ -13,7 +13,7 @@ router.get('/:confirmToken', async (req, res) => {
       res.status(400).send("Invalid token");
     }
   }).catch((err) => {
-    res.status(400).send(err);
+    res.status(404).send(err);
   });
 });
 
