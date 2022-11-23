@@ -3,16 +3,13 @@ const router = express.Router();
 const request = require('request');
 
 router.get('/', async (req, res) => {
-    request({
-        uri: 'https://www.themealdb.com/api/json/v1/1/filter.php',
-        qs: req.query
-    }, (err, response, body) => {
-        if (err) {
-            res.status(400).send(err);
+    request(process.env.MEALDB_URL + 'filter.php?i=' + req.body.ingredients.join(','), (error, response, data) => {
+        if (error) {
+            res.status(400).send(error);
         } else {
-            res.status(200).send(body);
+            res.status(200).send(JSON.parse(data).meals);
         }
-    });
+    })
 });
 
 module.exports = router;
