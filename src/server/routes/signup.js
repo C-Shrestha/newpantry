@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user');
-const { verifyEmail, sendConfirmationEmail } = require('../utils/emailUtils');
+const { sendConfirmationEmail } = require('../utils/emailUtils');
 const { genToken } = require('../utils/jwtUtils');
 
 router.post('/', async (req, res) => {
