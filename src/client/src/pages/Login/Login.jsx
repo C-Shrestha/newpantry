@@ -52,14 +52,16 @@ export default class Login extends Component{
                     localStorage.setItem('token-info', token);
                     localStorage.setItem('email-info', this.state.email);
                     localStorage.setItem('pass-info', this.state.password);
+                    console.log(token);
                     window.location.href = "https://newpantry.herokuapp.com/home";
+                    
                 }
                 return json;
             }).then(function(data){
                 localStorage.setItem('fname-info', data.firstName);
                 localStorage.setItem('lname-info', data.lastName);
                 localStorage.setItem('picture-info', data.profilePicture);
-                console.log(document.cookie);
+                
             });
         } catch (error){
             console.log(error);
@@ -110,6 +112,7 @@ export default class Login extends Component{
                         onChange={this.handleInputChange}
                         required
                     />
+                    <button className="pass">Forgot Password?</button>
                     <br/><br/>
                     <input type="submit" value="login"/>
                     <br/><br/>

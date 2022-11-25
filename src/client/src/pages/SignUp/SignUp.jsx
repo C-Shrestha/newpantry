@@ -23,6 +23,15 @@ export default class SignUp extends Component{
           [name]: value
         });
     }
+
+    /* limit input to only letters */
+    handleAplaChange = (event) => {
+        const val = event.target.value.replace(/[^a-z]/gi, '');
+        const name = event.target.name;
+        this.setState({
+            [name]: val
+          });
+    }
     
     onSubmit = async (event) => {
         event.preventDefault();
@@ -37,17 +46,19 @@ export default class SignUp extends Component{
                 headers: {
                 'Content-Type': 'application/json'
                 },
-            }).then(
-                response => { 
+            }).then((response) => { 
                 if (response.status === 400){
-                    var span = document.getElementById("errorSpan");
-                    span.innerHTML = "Invalid email or password";
-                    console.log("Invalid email or password");
+                    var span = document.getElementById("errorSpanSU");
+                    span.innerHTML = "Failed to create user";
+                    console.log("Failed to create user");
+                }
+                if (response.status === 200){
+                    var span = document.getElementById("errorSpanSU");
+                    span.style.color = '#A5BA78';
+                    span.innerHTML = "User created <br/>Please confirm email address";
+                    console.log("User created - please confirm new user's email address");
                 }
             });
-            const json = await response.json();
-            const token = response.headers.get("Authorization");
-            window.location.href = "https://newpantry.herokuapp.com/login";
         } catch (error){
             console.error(error);
         };
@@ -150,13 +161,14 @@ export default class SignUp extends Component{
                     <button type="button" class="btn">
                         <FontAwesomeIcon class="caretBtn" icon={faCaretRight} onClick={this.changeProfilePictureRight}/>
                     </button>
-                    <br/>
+                    <br/><br/>
+                    <h2 id="errorSpanSU"></h2>
                     <input
                         type="text"
                         name="firstName"
                         placeholder="first name"
                         value={this.state.firstName}
-                        onChange={this.handleInputChange}
+                        onChange={this.handleAplaChange}
                         required
                     />
                     <br/>
@@ -165,7 +177,7 @@ export default class SignUp extends Component{
                         name="lastName"
                         placeholder="last name"
                         value={this.state.lastName}
-                        onChange={this.handleInputChange}
+                        onChange={this.handleAplaChange}
                         required
                     />
                     <br/>

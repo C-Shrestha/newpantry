@@ -1,5 +1,6 @@
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
+import SearchGrid from '../../components/SearchGrid';
 import FoodGrid from '../../components/FoodGrid';
 import React, {Component} from 'react';
 import './HomePage.css';
@@ -15,8 +16,32 @@ export default class HomePage extends Component{
             this.state = {
                 token: localStorage.getItem('token-info'),
                 email: localStorage.getItem('email-info'),
-                profilePicture: localStorage.getItem('picture-info')
+                profilePicture: localStorage.getItem('picture-info'),
+                searchValue: '',
+                sendValue: 'none'
             };
+        }
+    }
+
+    handleInputChange = (event) => {
+        const { value, name } = event.target;
+        this.setState({
+          [name]: value
+        });
+    }
+
+    setVal = (event) => {
+        var foodGrid = document.getElementById("food");
+        var searchGrid = document.getElementById("searching");
+        var linkColor = document.getElementById("active");
+        if(event.key === 'Enter'){
+            foodGrid.style.display = 'none';
+            searchGrid.style.display = 'block';
+            linkColor.style.color = '#848484';
+            const sendValue = this.state.searchValue;
+            this.setState({
+                sendValue
+            });
         }
     }
 
@@ -50,7 +75,8 @@ export default class HomePage extends Component{
                     <div className="li"><a class="links" href="/favorites">Favorites</a></div>
                     <div className="li" >
                         <FontAwesomeIcon className="search-pic" id="search" icon={faMagnifyingGlass}/>
-                        <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon}></input>
+                        <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon} name="searchValue" value={this.state.searchValue}
+                         onChange={this.handleInputChange} onKeyPress={this.setVal}/>
                     </div>
                     <div className="li">
                         <div className="dropdown">
@@ -64,7 +90,12 @@ export default class HomePage extends Component{
                         </div>
                     </div>
                 </div>
-                <FoodGrid></FoodGrid>
+                <div id="food">
+                    <FoodGrid></FoodGrid>
+                </div>
+                <div id="searching">
+                    <SearchGrid value={this.state.sendValue}></SearchGrid>
+                </div>
             </div>
         );
     }

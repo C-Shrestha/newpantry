@@ -10,7 +10,7 @@
     text-decoration: none;
     font-family: 'Barlow Semi Condensed';
     font-weight: medium;
-    font-size: 1.75vw;
+    font-size: 1.5vw;
     color: #A5BA78; 
 }
 
@@ -20,20 +20,22 @@
     text-align: center;
     margin-left: 10%;
     font-weight: medium;
-    font-size: 1.75vw;
+    font-size: 1.5vw;
 }
 
-.loginDiv button{
+.pass{
     font-family: 'Barlow Semi Condensed';
-    font-size: 1.75vw;
-    font-weight: 500px;
-    width: 105%;
+    font-size: 1.1vw;
+    color: rgb(122, 122, 122);
+    position: absolute;
+    right: 0px;
+    background-color: transparent;
+    background-repeat: no-repeat;
     border: none;
-    cursor: pointer;
-    padding: 10px 10px 10px 10px;
-    background-color: #A5BA78;
-    border-radius: 20px;
-    color: white;
+    padding-top: 0.5%;
+}
+.pass:hover{
+    color: #A5BA78;
 }
 
 .loginDiv input{

@@ -1,7 +1,8 @@
 import { faMagnifyingGlass, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
+import SearchGrid from '../../components/SearchGrid';
+import FavGrid from "../../components/FavGrid";
 import React, {Component} from 'react';
-import FavGrid from "../../components/FavGrid"
 import './Favorites.css';
 
 
@@ -16,8 +17,32 @@ export default class FavoritesPage extends Component{
             this.state = {
                 token: localStorage.getItem('token-info'),
                 email: localStorage.getItem('email-info'),
-                profilePicture: localStorage.getItem('picture-info')
+                profilePicture: localStorage.getItem('picture-info'),
+                searchValue: '',
+                sendValue: 'none'
             };
+        }
+    }
+
+    handleInputChange = (event) => {
+        const { value, name } = event.target;
+        this.setState({
+          [name]: value
+        });
+    }
+
+    setVal = (event) => {
+        var foodGrid = document.getElementById("food");
+        var searchGrid = document.getElementById("searching");
+        var linkColor = document.getElementById("active");
+        if(event.key === 'Enter'){
+            foodGrid.style.display = 'none';
+            searchGrid.style.display = 'block';
+            linkColor.style.color = '#848484';
+            const sendValue = this.state.searchValue;
+            this.setState({
+                sendValue
+            });
         }
     }
 
@@ -68,6 +93,15 @@ export default class FavoritesPage extends Component{
         pantryDiv.style.visibility = "visible";
     }
 
+    hideIcon(){
+        var search = document.getElementById("search");
+        search.style.visibility = "hidden";
+    }
+    showIcon(){
+        var search = document.getElementById("search");
+        search.style.visibility = "visible";
+    }
+
     logOut(){
         localStorage.removeItem('token-info');
         localStorage.removeItem('email-info');
@@ -89,7 +123,8 @@ export default class FavoritesPage extends Component{
                     <div className="li"><a class="links" href="/favorites"id="active">Favorites</a></div>
                     <div className="li" >
                         <FontAwesomeIcon className="search-pic" id="search" icon={faMagnifyingGlass}/>
-                        <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon}></input>
+                        <input onMouseEnter={this.hideIcon} onMouseLeave={this.showIcon} name="searchValue" value={this.state.searchValue}
+                         onChange={this.handleInputChange} onKeyPress={this.setVal}/>
                     </div>
                     <div className="li">
                         <div className="dropdown">
@@ -103,39 +138,44 @@ export default class FavoritesPage extends Component{
                         </div>
                     </div>
                 </div>
-                <div className="select">
-                    <div className="animationBubble" id="animationBubble"></div>
-                    <button class="toggle" onClick={this.favoritesButton}>FAVORITES</button>
-                    <button class="toggle" onClick={this.pantryButton}>PANTRY</button>
-                </div>
-                <div className="pantry" id="pantry">
-                    <div className="top-bar">
-                        <h1>My Pantry</h1>
-                        <FontAwesomeIcon class="plus-pic" icon={faCirclePlus} />
+                <div id="food">
+                    <div className="select">
+                        <div className="animationBubble" id="animationBubble"></div>
+                        <button class="toggle" onClick={this.favoritesButton}>FAVORITES</button>
+                        <button class="toggle" onClick={this.pantryButton}>PANTRY</button>
                     </div>
-                    <div className="items">
-                        <table>
-                            <tr>
-                                <td>can of tomatoes 1</td>
-                                <td>can of tomatoes 2</td>
-                            </tr>
-                            <tr>
-                                <td>can of tomatoes 3</td>
-                                <td>can of tomatoes 4</td>
-                            </tr>
-                            <tr>
-                                <td>can of tomatoes 5</td>
-                                <td>can of tomatoes 6</td>
-                            </tr>
-                            <tr>
-                                <td>can of tomatoes 7</td>
-                                <td>can of tomatoes 8</td>
-                            </tr>
-                        </table>
+                    <div className="pantry" id="pantry">
+                        <div className="top-bar">
+                            <h1>My Pantry</h1>
+                            <FontAwesomeIcon class="plus-pic" icon={faCirclePlus} />
+                        </div>
+                        <div className="items">
+                            <table>
+                                <tr>
+                                    <td>can of tomatoes 1</td>
+                                    <td>can of tomatoes 2</td>
+                                </tr>
+                                <tr>
+                                    <td>can of tomatoes 3</td>
+                                    <td>can of tomatoes 4</td>
+                                </tr>
+                                <tr>
+                                    <td>can of tomatoes 5</td>
+                                    <td>can of tomatoes 6</td>
+                                </tr>
+                                <tr>
+                                    <td>can of tomatoes 7</td>
+                                    <td>can of tomatoes 8</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div className="favorites" id="favorites">
+                        <FavGrid></FavGrid>
                     </div>
                 </div>
-                <div className="favorites" id="favorites">
-                    <FavGrid></FavGrid>
+                <div id="searching">
+                    <SearchGrid value={this.state.sendValue}></SearchGrid>
                 </div>
             </div>
         );

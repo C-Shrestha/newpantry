@@ -1,5 +1,5 @@
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
-import { faHeart, faCircle, faHouseMedicalCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { useSwipeable } from "react-swipeable";
 import React, {useEffect, useState} from 'react';
