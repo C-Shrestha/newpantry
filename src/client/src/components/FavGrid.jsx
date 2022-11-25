@@ -6,6 +6,7 @@ import "./FoodGrid.css";
 
 export const FavGrid = () => {
   const [meals, setFavMeals] = useState([]);
+  const [heart, setHeart] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [openModal, setOpenModal] = useState();
 
@@ -26,6 +27,7 @@ export const FavGrid = () => {
             },
         });
         const json = await response.json();
+        setHeart(json);
         for(let i =0; i<json.length; i++){
             if(json[i]== null){
                 continue;
@@ -66,11 +68,11 @@ export const FavGrid = () => {
              'Authorization': token
             },
         });
-        const json = await response.json();      
+        const json = await response.json();  
+        setHeart(json);    
     } catch (error){
         console.log(error);
     }; 
-    window.location.reload();
 }
 
 const getIngredients = (meal) => {
@@ -109,7 +111,7 @@ const style = {
                           backgroundImage: `url(${meal.strMealThumb})`,
                       }} >
                       <div className="title" id="fav">{meal.strMeal}</div>
-                      <button onClick={(event) => handleRequestClick(event, meal.strMeal)} className='heartbtn' id="heart"><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
+                      <button onClick={(event) => handleRequestClick(event, meal.strMeal)} className='heartbtn' id="heart" style={{color: "white", backgroundColor: heart.includes(meal.strMeal) ? "#E54829": "#FABC4F"}}><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
                       </div>
                     <Modal
                       open={openModal === meal.idMeal}

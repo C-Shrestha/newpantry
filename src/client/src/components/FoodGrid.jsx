@@ -1,5 +1,5 @@
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
-import { faHeart, faCircle, faHouseMedicalCircleCheck } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { useSwipeable } from "react-swipeable";
 import React, {useEffect, useState} from 'react';
@@ -274,7 +274,7 @@ export const FoodGrid = () => {
                             backgroundImage: `url(${meal.strMealThumb})`,
                         }} >
                         <div className="title" style={{backgroundColor: lightColor}}>{meal.strMeal}</div>
-                        <button style={{color: heart.includes(meal.strMeal) ? "#E54829": "white", backgroundColor: heart.includes(meal.strMeal) ? "white": "#FABC4F"}}
+                        <button style={{color: "white", backgroundColor: heart.includes(meal.strMeal) ? "#E54829": "#FABC4F"}}
                         onClick={(event) => handleRequestClick(event, meal.strMeal)} className='heartbtn'><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
                         </div>
                         
@@ -320,7 +320,7 @@ export const FoodGrid = () => {
                     backgroundImage: `url(${meall.strMealThumb})`,
                 }}>
                 <div className="title" id="trend">{meall.strMeal}</div>
-                <button style={{color: heart.includes(meall.strMeal) ? "#E54829": "white", backgroundColor: heart.includes(meall.strMeal) ? "white": "#FABC4F"}}
+                <button style={{color: "white", backgroundColor: heart.includes(meall.strMeal) ? "#E54829": "#FABC4F"}}
                   onClick={(event) => handleRequestClick(event, meall.strMeal)} className='heartbtn' id="trending"><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
                 </div>
                 <Modal

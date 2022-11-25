@@ -30,7 +30,7 @@
     font-weight: bolder;
     font-size: 2.5vw;
     text-align: left;
-    /* background-color: #F4B278; */
+    /* background-color: #A5BA78; */
     bottom: 0px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -57,6 +57,17 @@
     position: absolute;
     box-shadow: inset 2px 2px 3px rgb(49, 49, 49);
     z-index: 10px;
+}
+.heartbtn:active{
+
+    box-shadow: inset 2px 2px 3px rgb(49, 49, 49);
+    transform: translateY(4px);
+
+    /* color: #000;
+    background-position: 0 50%;
+    background: #333333;
+    box-shadow: inset 0 2px 3px rgba(black, .5), 0 1px 1px */
+
 }
 #heart {
     background-color: #E54829; 
@@ -178,43 +189,49 @@ text{
 @keyframes loading {
     0% { transform: translate(-50%,-50%) rotate(0deg); }
     100% { transform: translate(-50%,-50%) rotate(360deg); }
-  }
-  .loading div {
+}
+.loading div {
     position: absolute;
     width: 120px;
     height: 120px;
     border: 20px solid #5e5684;
     border-top-color: transparent;
     border-radius: 50%;
-  }
-  .loading div {
+}
+.loading div {
     animation: loading 0.75s linear infinite;
     top: 100px;
     left: 100px;
     box-sizing: content-box; 
-  }
-  .loading-spinner {
+}
+.loading-spinner {
     width: 200px;
     height: 200px;
     display: inline-block;
     overflow: hidden;
     background: transparent;
-  }
-  .loading {
+}
+.loading {
     width: 100%;
     height: 100%;
     position: relative;
     transform: translateZ(0) scale(1);
     backface-visibility: hidden;
     transform-origin: 0 0; /* see note above */
-  }
+}
 
-  .loadingDiv{
+.loadingDiv{
     position: absolute;
     width: 100%;
     display: none;
     justify-content: center;
     align-items: center;
     margin-top: 10%;
-  }
+}
 
+#nothing{
+    font-family: 'Barlow Semi Condensed';
+    text-align: center;
+    font-size: 2vw;
+    color: #F4B278;
+}
