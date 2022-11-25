@@ -155,7 +155,7 @@ function SearchGrid(props){
                         backgroundImage: `url(${meal.strMealThumb})`,
                     }} >
                     <div className="title" style={{backgroundColor: '#A5BA78'}}>{meal.strMeal}</div>
-                    <button style={{color: heart.includes(meal.strMeal) ? "#E54829": "white", backgroundColor: heart.includes(meal.strMeal) ? "white": "#FABC4F"}}
+                    <button style={{color: "white", backgroundColor: heart.includes(meal.strMeal) ? "#E54829": "#FABC4F"}}
                     onClick={(event) => handleRequestClick(event, meal.strMeal)} className='heartbtn'><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
                     </div>
                     
