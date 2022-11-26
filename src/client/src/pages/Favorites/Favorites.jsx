@@ -112,34 +112,6 @@ export default class FavoritesPage extends Component{
         window.location.reload();
     }
 
-    addIngredient = async (ingredient) => {
-        var token = localStorage.getItem('token-info');
-        var email = localStorage.getItem('email-info');
-        var ingredientInside = "new row";
-        const URL = 'https://newpantry.herokuapp.com/api/pantry';
-        const body = JSON.stringify({email: email, ingredient: ingredientInside});
-        try{
-            const response = await fetch(URL, {
-                method: 'POST',
-                body: body,
-                headers: {
-                'Content-Type': 'application/json',
-                'Authorization': token,
-                },
-            });
-            const json = await response.json();
-            console.log(json);
-            // var tbodyRef = document.getElementById('pantryTable').getElementsByTagName('tbody')[0];
-            // var newRow = tbodyRef.insertRow();
-            // var newCell = newRow.insertCell();
-            // var newText = document.createTextNode('new row');
-            // newCell.appendChild(newText);
-        } catch (error){
-            console.log(error);
-        };
-
-    }
-
     render(){
         return(
             <div className='landing'>
@@ -175,7 +147,7 @@ export default class FavoritesPage extends Component{
                     <div className="pantry" id="pantry">
                         <div className="top-bar">
                             <h1>My Pantry</h1>
-                            <FontAwesomeIcon class="plus-pic" onClick={this.addIngredient} icon={faCirclePlus} />
+                            <FontAwesomeIcon class="plus-pic" icon={faCirclePlus} />
                         </div>
                         <div className="items">
                             <table>
