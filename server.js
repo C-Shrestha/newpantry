@@ -71,6 +71,9 @@ app.use('/api/editProfile', editProfile);
 const pantry = require('./src/server/routes/pantry');
 app.use('/api/pantry', pantry);
 
+const forgotPass = require('./src/server/routes/forgotPass');
+app.use('/api/forgotPass', forgotPass);
+
 if (process.env.NODE_ENV === 'production') 
 {
   app.use(express.static('src/client/build'));
