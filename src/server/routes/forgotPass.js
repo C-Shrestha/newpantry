@@ -3,6 +3,7 @@ const router = express.Router();
 
 const User = require('../models/user');
 const crypto = require('crypto');
+const md5 = require('md5');
 const { sendRecoveryEmail } = require('../utils/emailUtils');
 
 router.get('/', async (req, res) => {
@@ -25,7 +26,7 @@ router.get('/', async (req, res) => {
 router.get('/:recoveryToken', async (req, res) => {
   await User.findOne({ recoveryToken: req.params.recoveryToken }).then((user) => {
     if (user) {
-      user.password = req.params.recoveryToken;
+      user.password = md5(req.params.recoveryToken);
       user.save();
       res.status(200).send(`Password changed to: ${req.params.recoveryToken} - please close this tab and login`);
     } else {
