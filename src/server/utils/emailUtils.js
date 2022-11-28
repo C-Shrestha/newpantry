@@ -31,7 +31,7 @@ const sendRecoveryEmail = async (email, recoverToken) => {
     from: process.env.MAIL_USERNAME,
     to: email,
     subject: "Pantry - Password Recovery Request",
-    text: "Please reset your password by clicking the following link: " + (process.env.NODE_ENV === "production" ? process.env.PROD_DOMAIN : process.env.DEV_DOMAIN) + "/resetPassword/" + recoverToken
+    text: "Please reset your password by clicking the following link: " + (process.env.NODE_ENV === "production" ? process.env.PROD_DOMAIN : process.env.DEV_DOMAIN) + "/forgotPass/" + recoverToken
   };
 
   transporter.sendMail(message);

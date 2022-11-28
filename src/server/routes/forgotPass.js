@@ -9,7 +9,6 @@ router.get('/', async (req, res) => {
   await User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
       user.recoveryToken = crypto.randomBytes(20).toString('hex');
-      console.log(user.recoveryToken);
       user.save().then(() => {
         sendRecoveryEmail(req.body.email, user.recoveryToken);
       });
