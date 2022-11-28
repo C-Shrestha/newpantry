@@ -1,7 +1,8 @@
 import { faMagnifyingGlass, faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import React, {Component} from 'react';
-import FavGrid from "../../components/FavGrid"
+import FavGrid from "../../components/FavGrid";
+import PantryGrid from "../../components/PantryGrid";
 import './Favorites.css';
 
 
@@ -109,30 +110,7 @@ export default class FavoritesPage extends Component{
                     <button class="toggle" onClick={this.pantryButton}>PANTRY</button>
                 </div>
                 <div className="pantry" id="pantry">
-                    <div className="top-bar">
-                        <h1>My Pantry</h1>
-                        <FontAwesomeIcon class="plus-pic" icon={faCirclePlus} />
-                    </div>
-                    <div className="items">
-                        <table>
-                            <tr>
-                                <td>can of tomatoes 1</td>
-                                <td>can of tomatoes 2</td>
-                            </tr>
-                            <tr>
-                                <td>can of tomatoes 3</td>
-                                <td>can of tomatoes 4</td>
-                            </tr>
-                            <tr>
-                                <td>can of tomatoes 5</td>
-                                <td>can of tomatoes 6</td>
-                            </tr>
-                            <tr>
-                                <td>can of tomatoes 7</td>
-                                <td>can of tomatoes 8</td>
-                            </tr>
-                        </table>
-                    </div>
+                    <PantryGrid></PantryGrid>
                 </div>
                 <div className="favorites" id="favorites">
                     <FavGrid></FavGrid>

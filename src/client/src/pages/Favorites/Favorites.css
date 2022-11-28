@@ -96,10 +96,9 @@
 .items table{
     border-collapse: separate;
     border-spacing: 50px 20px;
-    display: flex;
-    flex-direction: column;
+    display: inline-block;
     margin: auto;
-    margin-top: 2.5%;
+    margin-top: 1%;
     overflow: hidden;
     table-layout: fixed;
 }
@@ -112,12 +111,16 @@
     font-size: 32px;
     font-weight: bold;
     height: 66px;
-    overflow: hidden;
+    overflow: scroll;
     text-align: center;
     white-space: nowrap;
-    word-wrap: break-word;
     width: 500px;
+    max-width: 500px;
 }
+
+.items table td::-webkit-scrollbar {
+    display: none;
+  }
 
 
 /* No scrollbar shown, just scroll */
@@ -131,4 +134,81 @@
     visibility: visible;
     margin-top: -30%;
     width: auto;
+}
+
+.pantryGrid{
+    border-radius: 50px;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addBox{
+    display: inline-block;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: white;
+    height: 15rem;
+    width: 30rem;
+    border-radius: 50px;
+    margin: auto;
+}
+
+.addInput{
+    box-shadow: 3px 4px 5px 0px rgba(255, 255, 255, 0.38);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 10%;
+    height: 48px;
+    width: 65%;
+    border-radius: 12.5px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 20px;
+    font-family: 'Barlow Semi Condensed';
+    color: dimgray;
+    border: none;
+    outline: none;
+    background-color: rgb(226, 226, 226);
+}
+
+.cancelBut{
+    display: inline-block;
+    margin: auto;
+    margin-top: 10%;
+    margin-right: 2%;
+    width: 30%;
+    height: 42px;
+    background-color: #EA862D;
+    color: white;
+    border: none;
+    border-radius: 12.5px;
+    font-weight: bolder;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.saveBut{
+    display: inline-block;
+    margin: auto;
+    margin-left: 2%;
+    width: 30%;
+    height: 42px;
+    background-color: #A5BA78;
+    color: white;
+    border: none;
+    border-radius: 12.5px;
+    font-weight: bolder;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.modal{
+    display: flex;
 }
