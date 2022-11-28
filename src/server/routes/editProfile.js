@@ -18,8 +18,10 @@ router.post('/', authToken, async(req, res) => {
       user.save();
       res.status(200).send(user);
     } else {
-      res.status(400).send("Invalid email");
+      res.status(404).send("Invalid email");
     }
+  }).catch((err) => {
+    res.status(400).send(err);
   });
 });
 

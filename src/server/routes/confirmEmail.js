@@ -10,10 +10,10 @@ router.get('/:confirmToken', async (req, res) => {
       user.save();
       res.status(200).send("Email confirmed - please close this tab and login");
     } else {
-      res.status(400).send("Invalid token");
+      res.status(404).send("Invalid token");
     }
   }).catch((err) => {
-    res.status(404).send(err);
+    res.status(400).send(err);
   });
 });
 

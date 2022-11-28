@@ -20,13 +20,13 @@ router.post('/', async (req, res) => {
           res.status(401).send("User email not verified");
         }
       } else {
-        res.status(400).send("Invalid password");
+        res.status(401).send("Invalid password");
       }
     } else {
-      res.status(400).send("Invalid email");
+      res.status(404).send("Invalid email");
     }
   }).catch((err) => {
-    res.status(400).send(err);
+    res.status(503).send(err);
   });
 });
 
