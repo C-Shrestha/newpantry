@@ -9,7 +9,15 @@ export const PantryGrid = () => {
     const [openModal, setOpenModal] = useState(false);
 
     const addIngredient = async (ingredient) => {
-        if(ingredient == "") return;
+        if(ingredient == ""){
+            document.getElementById("addError").innerHTML = "Cannot add empty items"
+            return;
+        }
+        else if(ingredients.includes(ingredient)){
+            document.getElementById("addError").innerHTML = "Cannot add repeat items"
+            return;
+        }
+        document.getElementById("addError").innerHTML = "";
         var token = localStorage.getItem('token-info');
         var email = localStorage.getItem('email-info');
         const URL = 'https://newpantry.herokuapp.com/api/pantry';
@@ -109,6 +117,7 @@ export const PantryGrid = () => {
                                     <input className="addInput" id="addInput"></input>
                                     <button className="cancelBut" onClick={() => cancelButton()} >CANCEL</button>
                                     <button className="saveBut" onClick={() => addIngredient(document.getElementById('addInput').value)} >SAVE</button>
+                                    <h2 id="addError"></h2>
                                 </div>
                             </Modal>
                             <FontAwesomeIcon className="plus-pic" onClick={() => addButton()} icon={faCirclePlus} />

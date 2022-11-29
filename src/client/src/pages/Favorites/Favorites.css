@@ -239,3 +239,9 @@
     color: #E54829;
     cursor: pointer;
 }
+
+#addError{
+    color: #E54829;
+    text-align: center;
+    margin-top: 2%;
+}
