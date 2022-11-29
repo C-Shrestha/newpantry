@@ -24,9 +24,6 @@ export default class Login extends Component{
         event.preventDefault();
         var md5 = require('md5');
         var hashedPassword = md5(this.state.password);
-        hashedPassword = md5(hashedPassword);
-        hashedPassword = md5(hashedPassword);
-        hashedPassword = md5(hashedPassword);
         // ^ TO BE TESTED ??
         console.log(hashedPassword);
         console.log(this.state.password);
