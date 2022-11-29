@@ -23,9 +23,9 @@ export default class Login extends Component{
     onSubmit = async (event) => {
         event.preventDefault();
         var md5 = require('md5');
-        this.state.password = md5(this.state.password); 
+        var hashedPassword = md5(this.state.password);
         const URL = 'https://newpantry.herokuapp.com/api/login';
-        const body = JSON.stringify({email: this.state.email, password: this.state.password});
+        const body = JSON.stringify({email: this.state.email, password: hashedPassword});
         try{
             const response = await fetch(URL, {
                 method: 'POST',

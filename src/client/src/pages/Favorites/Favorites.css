@@ -227,3 +227,21 @@
     display: flex;
 }
 
+.deleteButton{
+    transform: translate(-120px, 10px);
+    border: none;
+    background-color: transparent;
+}
+
+.delete-pic{
+    height: 48px;
+    width: 48px;
+    color: #E54829;
+    cursor: pointer;
+}
+
+#addError{
+    color: #E54829;
+    text-align: center;
+    margin-top: 2%;
+}
