@@ -43,8 +43,14 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
+    }, 
+    __v: {
+        type: Number,
+        required: true,
+        default: 0, 
+        select: false
     }
 
-}, {collection: 'User'}, {timestamps: true}, {versionKey: false } );
+}, {collection: 'User'}, {timestamps: true}, {versionKey: false} );
 
 module.exports = mongoose.model('User', userSchema);
