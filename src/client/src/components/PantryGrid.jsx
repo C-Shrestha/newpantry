@@ -1,14 +1,15 @@
-import { faCirclePlus, faCircleXmark, faPen } from '@fortawesome/free-solid-svg-icons';
+import { faCirclePlus, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import React, {useEffect, useState} from 'react';
 import '../pages/Favorites/Favorites.css';
 import { Modal } from '@mui/material';
 
 export const PantryGrid = () => {
-    const [ingredients, setIngredients] = useState([]);
+    const [ingredients, setIngredients] = useState(['default', 'testing very very very long ingredients', 'test2', 'keep', 'going', 'until', 'infinity', 'and', 'beyond', 'test2', 'keep', 'going', 'until', 'infinity', 'and', 'beyond']);
     const [openModal, setOpenModal] = useState(false);
 
     const addIngredient = async (ingredient) => {
+        if(ingredient == "") return;
         var token = localStorage.getItem('token-info');
         var email = localStorage.getItem('email-info');
         const URL = 'https://newpantry.herokuapp.com/api/pantry';
@@ -23,16 +24,57 @@ export const PantryGrid = () => {
                 },
             });
             const json = await response.json();
-            var newIngredients = json.pantryIngredients;
-            if(newIngredients[newIngredients.length-1] == null){
-                newIngredients.pop();
+            var jsonIngredients = json.pantryIngredients;
+            var newIngredients;
+            for(var item in jsonIngredients){
+                if(item == null || item == ""){
+                    continue;
+                }
+                else{
+                    newIngredients.push(item);
+                }
             }
+            console.log(jsonIngredients);
             console.log(newIngredients);
             setIngredients(newIngredients);
         } catch (error){
             console.log(error);
         };
         setOpenModal(false);
+    }
+
+    const deleteIngredient = async (index) => {
+        var ingredientName = document.getElementById("pantryTable").rows[Math.floor(index/2)].cells[index%2].innerHTML;
+        var token = localStorage.getItem('token-info');
+        var email = localStorage.getItem('email-info');
+        const URL = 'https://newpantry.herokuapp.com/api/pantry';
+        const body = JSON.stringify({email: email, ingredient: ingredientName});
+        try{
+            const response = await fetch(URL, {
+                method: 'POST',
+                body: body,
+                headers: {
+                'Content-Type': 'application/json',
+                'Authorization': token,
+                },
+            });
+            const json = await response.json();
+            var jsonIngredients = json.pantryIngredients;
+            var newIngredients;
+            for(var item in jsonIngredients){
+                if(item == null || item == ""){
+                    continue;
+                }
+                else{
+                    newIngredients.push(item);
+                }
+            }
+            console.log(jsonIngredients);
+            console.log(newIngredients);
+            setIngredients(newIngredients);
+        } catch (error){
+            console.log(error);
+        };
     }
 
     const getIngredients = async () => {
@@ -50,10 +92,17 @@ export const PantryGrid = () => {
                 },
             });
             const json = await response.json();
-            var newIngredients = json.pantryIngredients;
-            if(newIngredients[newIngredients.length-1] == null){
-                newIngredients.pop();
+            var jsonIngredients = json.pantryIngredients;
+            var newIngredients;
+            for(var item in jsonIngredients){
+                if(item == null || item == ''){
+                    continue;
+                }
+                else{
+                    newIngredients.push(item);
+                }
             }
+            console.log(jsonIngredients);
             console.log(newIngredients);
             setIngredients(newIngredients);
         } catch (error){
@@ -89,7 +138,7 @@ export const PantryGrid = () => {
                             <FontAwesomeIcon className="plus-pic" onClick={() => addButton()} icon={faCirclePlus} />
                         </div>
             <div className="items">
-                <table>
+                <table id="pantryTable">
                     {
                         ingredients.map( (ingredient, index) => 
                         {
@@ -99,15 +148,24 @@ export const PantryGrid = () => {
                                         <td>
                                             {ingredients[index*2]}
                                         </td>
+                                        <button className="deleteButton">
+                                            <FontAwesomeIcon className="delete-pic" onClick={() => deleteIngredient(index*2)} icon={faCircleXmark} />
+                                        </button>
                                         <td>
                                             {ingredients[index*2 + 1]}
                                         </td>
+                                        <button className="deleteButton">
+                                            <FontAwesomeIcon className="delete-pic" onClick={() => deleteIngredient(index*2 + 1)} icon={faCircleXmark} />
+                                        </button>
                                     </tr>
                                     ) : ((index * 2) < ingredients.length ? (
                                     <tr>
                                         <td>
                                             {ingredients[index*2]}
                                         </td>
+                                        <button className="deleteButton">
+                                            <FontAwesomeIcon className="delete-pic" onClick={() => deleteIngredient(index*2)} icon={faCircleXmark} />
+                                        </button>
                                     </tr>
                                     ) : null )
                             ]

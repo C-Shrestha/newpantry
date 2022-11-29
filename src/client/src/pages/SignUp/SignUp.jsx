@@ -37,6 +37,7 @@ export default class SignUp extends Component{
         event.preventDefault();
         var md5 = require('md5');
         this.state.password = md5(this.state.password); 
+        console.log(this.state.password);
         const URL = 'https://newpantry.herokuapp.com/api/signup';
         const body = JSON.stringify({firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password, profilePicture: this.state.profilePicture});
         try{
