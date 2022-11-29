@@ -43,6 +43,11 @@ const userSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default: 0
+    }, 
+    __v: { 
+      type: Number, 
+      select: false,
+      required: true
     }
 
 }, {collection: 'User'}, {timestamps: true}, {versionKey: false } );
