@@ -5,7 +5,7 @@ import '../pages/Favorites/Favorites.css';
 import { Modal } from '@mui/material';
 
 export const PantryGrid = () => {
-    const [ingredients, setIngredients] = useState(['default', 'testing very very very long ingredients', 'test2', 'keep', 'going', 'until', 'infinity', 'and', 'beyond', 'test2', 'keep', 'going', 'until', 'infinity', 'and', 'beyond']);
+    const [ingredients, setIngredients] = useState([]);
     const [openModal, setOpenModal] = useState(false);
 
     const addIngredient = async (ingredient) => {
@@ -25,17 +25,9 @@ export const PantryGrid = () => {
             });
             const json = await response.json();
             var jsonIngredients = json.pantryIngredients;
-            var newIngredients;
-            for(var item in jsonIngredients){
-                if(item == null || item == ""){
-                    continue;
-                }
-                else{
-                    newIngredients.push(item);
-                }
-            }
-            console.log(jsonIngredients);
-            console.log(newIngredients);
+            var newIngredients = jsonIngredients.filter(el => {
+                return el != null && el != '';
+            });
             setIngredients(newIngredients);
         } catch (error){
             console.log(error);
@@ -60,17 +52,9 @@ export const PantryGrid = () => {
             });
             const json = await response.json();
             var jsonIngredients = json.pantryIngredients;
-            var newIngredients;
-            for(var item in jsonIngredients){
-                if(item == null || item == ""){
-                    continue;
-                }
-                else{
-                    newIngredients.push(item);
-                }
-            }
-            console.log(jsonIngredients);
-            console.log(newIngredients);
+            var newIngredients = jsonIngredients.filter(el => {
+                return el != null && el != '';
+            });
             setIngredients(newIngredients);
         } catch (error){
             console.log(error);
@@ -93,17 +77,9 @@ export const PantryGrid = () => {
             });
             const json = await response.json();
             var jsonIngredients = json.pantryIngredients;
-            var newIngredients;
-            for(var item in jsonIngredients){
-                if(item == null || item == ''){
-                    continue;
-                }
-                else{
-                    newIngredients.push(item);
-                }
-            }
-            console.log(jsonIngredients);
-            console.log(newIngredients);
+            var newIngredients = jsonIngredients.filter(el => {
+                return el != null && el != '';
+            });
             setIngredients(newIngredients);
         } catch (error){
             console.log(error);

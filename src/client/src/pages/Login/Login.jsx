@@ -24,9 +24,6 @@ export default class Login extends Component{
         event.preventDefault();
         var md5 = require('md5');
         var hashedPassword = md5(this.state.password);
-        // ^ TO BE TESTED ??
-        console.log(hashedPassword);
-        console.log(this.state.password);
         const URL = 'https://newpantry.herokuapp.com/api/login';
         const body = JSON.stringify({email: this.state.email, password: hashedPassword});
         try{
