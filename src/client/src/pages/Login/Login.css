@@ -32,7 +32,7 @@
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
-    padding-top: 0.5%;
+    margin-top: -0.5%;
 }
 .pass:hover{
     color: #A5BA78;

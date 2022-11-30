@@ -1,4 +1,3 @@
-import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import SearchGrid from '../../components/SearchGrid';
@@ -58,10 +57,9 @@ export default class Profile extends Component{
     onSubmit = async (event) => {
         event.preventDefault();
         var md5 = require('md5');
-        this.state.password = md5(this.state.password); 
-        console.log(this.state.token);
+        var hashedPassword = md5(this.state.password);
         const URL = 'https://newpantry.herokuapp.com/api/editProfile';
-        const body = JSON.stringify({email: this.state.email, firstName: this.state.firstName, lastName: this.state.lastName, password: this.state.password});
+        const body = JSON.stringify({email: this.state.email, firstName: this.state.firstName, lastName: this.state.lastName, password: hashedPassword});
         try{
             const response = await fetch(URL, {
                 method: 'POST',
@@ -76,6 +74,13 @@ export default class Profile extends Component{
                if(response.status === 200){
                     json = await response.json();
                     localStorage.setItem('pass-info', this.state.password);
+                    var span = document.getElementById("errorSpan");
+                    span.style.color = '#A5BA78';
+                    span.style.marginLeft = '-10%';
+                    span.innerHTML = "Profile Updated";
+                    setTimeout(function(){
+                        span.innerHTML = '';
+                    }, 3000);
                 }
                 return json;
             }).then(function(data){
@@ -137,6 +142,7 @@ export default class Profile extends Component{
                 <div id="food">
                     <div className="profileDiv">
                         <form className="formPR" onSubmit={this.onSubmit}>
+                        <h2 id="errorSpan"></h2>
                             <input
                                 id="edit1"
                                 type="text"

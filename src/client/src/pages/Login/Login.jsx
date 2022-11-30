@@ -68,6 +68,48 @@ export default class Login extends Component{
         };
     } 
 
+    forgotPass = async (event) => {
+        console.log("here");
+        event.preventDefault();
+
+        const URL1 = 'https://newpantry.herokuapp.com/api/users';
+        const body1 = JSON.stringify({email: this.state.email});
+        console.log(body1);
+        try{
+            const response = await fetch(URL1, {
+                method: 'POST',
+                body: body1,
+                headers: {
+                'Content-Type': 'application/json'
+                },
+            });
+            const json = await response.json();    
+            console.log(json);
+
+        } catch (error){
+            console.log(error);
+        }; 
+
+        var email = this.state.email;
+        const URL = 'https://newpantry.herokuapp.com/api/forgotPass';
+        const body = JSON.stringify({email: email});
+        console.log(body);
+        try{
+            const response = await fetch(URL, {
+                method: 'POST',
+                body: body,
+                headers: {
+                'Content-Type': 'application/json'
+                },
+            });
+            const json = await response.json();    
+            console.log(json);
+
+        } catch (error){
+            console.log(error);
+        }; 
+    }
+
     // ******************* COMPONENT LIFECYCLE ******************* //
     componentDidMount() {
         // Get canvas, pass to custom class
@@ -112,12 +154,12 @@ export default class Login extends Component{
                         onChange={this.handleInputChange}
                         required
                     />
-                    <button className="pass">Forgot Password?</button>
                     <br/><br/>
                     <input type="submit" value="login"/>
                     <br/><br/>
                     <text>Not registered? </text><a href="/signup">Sign Up</a>
                 </form>
+                <button onClick={this.forgotPass} className="pass">Forgot Password?</button>
                 <div className="object">
                     <canvas ref={this.canvasRef} />
                 </div>
