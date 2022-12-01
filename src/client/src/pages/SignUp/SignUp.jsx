@@ -34,9 +34,17 @@ export default class SignUp extends Component{
     }
     
     onSubmit = async (event) => {
+        var password = this.state.password;
+        var regex = /^[^]{8,16}$/;
+        if (regex.test(password) == false) {
+            var span = document.getElementById("errorSpanSU");
+            span.style.color = "#E54829";
+            span.innerHTML = "Password must be minimum 8 characters";
+            return;
+        }
         event.preventDefault();
         var md5 = require('md5');
-        var hashedPassword = md5(this.state.password);
+        var hashedPassword = md5(password);
         const URL = 'https://newpantry.herokuapp.com/api/signup';
         const body = JSON.stringify({firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: hashedPassword, profilePicture: this.state.profilePicture});
         try{
