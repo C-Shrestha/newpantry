@@ -70,23 +70,23 @@ export default class Login extends Component{
         console.log("here");
         event.preventDefault();
 
-        const URL1 = 'https://newpantry.herokuapp.com/api/forgotPass';
-        const body1 = JSON.stringify({email: this.state.email});
-        var encoded = encodeURIComponent(body1);
-        console.log(encoded);
-        try{
-            const response = await fetch(URL1 +"?"+ encoded, {
-                method: 'GET',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-            }).then(async (response) => {
-                // const json = await response.json();    
-                console.log(response);
-            });
-        } catch (error){
-            console.log(error);
-        }; 
+        // const URL1 = 'https://newpantry.herokuapp.com/api/forgotPass';
+        // const body1 = JSON.stringify({email: this.state.email});
+        // var encoded = encodeURIComponent(body1);
+        // console.log(encoded);
+        // try{
+        //     const response = await fetch(URL1 +"?"+ encoded, {
+        //         method: 'GET',
+        //         headers: {
+        //         'Content-Type': 'application/json'
+        //         },
+        //     }).then(async (response) => {
+        //         // const json = await response.json();    
+        //         console.log(response);
+        //     });
+        // } catch (error){
+        //     console.log(error);
+        // }; 
 
         var email = this.state.email;
         const URL = 'https://newpantry.herokuapp.com/api/forgotPass';
@@ -152,12 +152,13 @@ export default class Login extends Component{
                         onChange={this.handleInputChange}
                         required
                     />
+                    <button onClick={this.forgotPass} className="pass">Forgot Password?</button>
                     <br/><br/>
                     <input type="submit" value="login"/>
                     <br/><br/>
                     <text>Not registered? </text><a href="/signup">Sign Up</a>
                 </form>
-                <button onClick={this.forgotPass} className="pass">Forgot Password?</button>
+                
                 <div className="object">
                     <canvas ref={this.canvasRef} />
                 </div>
