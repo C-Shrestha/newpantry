@@ -81,7 +81,7 @@ const getIngredients = (meal) => {
   for(let i =0; i<20; i++){
     let ingredient = `strIngredient${i+1}`;
     let measurement = `strMeasure${i+1}`;
-    if(meal[ingredient] !== ""){
+    if(meal[ingredient] !== "" && meal[ingredient] !== null){
       food.push(meal[measurement] + " " + meal[ingredient]);
     }
   }

@@ -1,4 +1,3 @@
-import { faCaretRight, faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import SearchGrid from '../../components/SearchGrid';
@@ -58,10 +57,10 @@ export default class Profile extends Component{
     onSubmit = async (event) => {
         event.preventDefault();
         var md5 = require('md5');
-        this.state.password = md5(this.state.password); 
+        var hashedPassword = md5(this.state.password);
         console.log(this.state.token);
         const URL = 'https://newpantry.herokuapp.com/api/editProfile';
-        const body = JSON.stringify({email: this.state.email, firstName: this.state.firstName, lastName: this.state.lastName, password: this.state.password});
+        const body = JSON.stringify({email: this.state.email, firstName: this.state.firstName, lastName: this.state.lastName, password: hashedPassword});
         try{
             const response = await fetch(URL, {
                 method: 'POST',
