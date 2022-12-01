@@ -58,7 +58,7 @@ export default class Profile extends Component{
         event.preventDefault();
         var password = this.state.password;
         var regex = /^[^]{8,16}$/;
-        if (regex.test(password) == false) {
+        if (regex.test(password) === false) {
             var span = document.getElementById("errorSpan");
             span.style.color = "#E54829";
             span.innerHTML = "Password must be minimum 8 characters";
@@ -69,7 +69,7 @@ export default class Profile extends Component{
         const URL = 'https://newpantry.herokuapp.com/api/editProfile';
         const body = JSON.stringify({email: this.state.email, firstName: this.state.firstName, lastName: this.state.lastName, password: hashedPassword});
         try{
-            const response = await fetch(URL , {
+            await fetch(URL , {
                 method: 'POST',
                 body: body,
                 headers: {
@@ -81,7 +81,7 @@ export default class Profile extends Component{
                 var json = "";
                 var span = document.getElementById("errorSpan");
                 if(response.status === 404){
-                    span.style.color = '#A5BA78';
+                    span.style.color = "#E54829";
                     span.style.marginLeft = '-10%';
                     span.innerHTML = "Invalid email"; 
                 }

@@ -27,7 +27,7 @@ export default class Login extends Component{
         const URL = 'https://newpantry.herokuapp.com/api/login';
         const body = JSON.stringify({email: this.state.email, password: hashedPassword});
         try{
-            const response = await fetch(URL, {
+            await fetch(URL, {
                 method: 'POST',
                 body: body,
                 headers: {
@@ -38,10 +38,12 @@ export default class Login extends Component{
                 var json = "";
                 var span = document.getElementById("errorSpan");
                 if (response.status === 401){
+                    span.style.color = "#E54829";
                     span.innerHTML = "Invalid password";
                     console.log("Invalid password");
                 }
                 else if(response.status === 404){
+                    span.style.color = "#E54829";
                     span.innerHTML = "Invalid email";
                     console.log("Invalid email");
                 }
@@ -67,27 +69,7 @@ export default class Login extends Component{
     } 
 
     forgotPass = async (event) => {
-        console.log("here");
         event.preventDefault();
-
-        // const URL1 = 'https://newpantry.herokuapp.com/api/forgotPass';
-        // const body1 = JSON.stringify({email: this.state.email});
-        // var encoded = encodeURIComponent(body1);
-        // console.log(encoded);
-        // try{
-        //     const response = await fetch(URL1 +"?"+ encoded, {
-        //         method: 'GET',
-        //         headers: {
-        //         'Content-Type': 'application/json'
-        //         },
-        //     }).then(async (response) => {
-        //         // const json = await response.json();    
-        //         console.log(response);
-        //     });
-        // } catch (error){
-        //     console.log(error);
-        // }; 
-
         var email = this.state.email;
         const URL = 'https://newpantry.herokuapp.com/api/forgotPass';
         const body = JSON.stringify({email: email});
@@ -100,9 +82,17 @@ export default class Login extends Component{
                 'Content-Type': 'application/json'
                 },
             });
-            const json = await response.json();    
-            console.log(json);
-
+            console.log(response);
+            var span = document.getElementById("errorSpan");
+            if(response.status === 200){
+                span.style.color = "#A5BA78";
+                span.innerHTML = "Recovery email sent<br/>Please check your email"; 
+            }
+            else if (response.status === 404){
+                span.style.color = "#E54829";
+                span.innerHTML = "Email not found";
+                console.log("Email not found"); 
+            }
         } catch (error){
             console.log(error);
         }; 

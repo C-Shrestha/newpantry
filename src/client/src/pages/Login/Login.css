@@ -32,7 +32,7 @@
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
-    padding-top: -1%;
+    margin-top: -0.7%;
 }
 .pass:hover{
     color: #A5BA78;
@@ -76,5 +76,6 @@
 #errorSpan{
     color: #E54829;
     text-align: center;
+    font-size: 1.3vw;
     margin-top: -10%;
 }
