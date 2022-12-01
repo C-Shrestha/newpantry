@@ -6,7 +6,7 @@ const crypto = require('crypto');
 const md5 = require('md5');
 const { sendRecoveryEmail } = require('../utils/emailUtils');
 
-router.get('/', async (req, res) => {
+router.post('/', async (req, res) => {
   await User.findOne({ email: req.body.email }).then((user) => {
     if (user) {
       user.recoveryToken = crypto.randomBytes(20).toString('hex');
