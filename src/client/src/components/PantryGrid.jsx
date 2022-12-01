@@ -2,7 +2,7 @@ import { faCirclePlus, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon  } from '@fortawesome/react-fontawesome';
 import React, {useEffect, useState} from 'react';
 import '../pages/Favorites/Favorites.css';
-import { Modal } from '@mui/material';
+import { Alert, Modal } from '@mui/material';
 
 export const PantryGrid = () => {
     const [ingredients, setIngredients] = useState([]);
@@ -44,7 +44,8 @@ export const PantryGrid = () => {
     }
 
     const deleteIngredient = async (index) => {
-        var ingredientName = document.getElementById("pantryTable").rows[Math.floor(index/2)].cells[index%2].innerHTML;
+        var ingredientName = document.getElementById(index).innerHTML;
+        alert("Delete Confirmation: " + ingredientName);
         var token = localStorage.getItem('token-info');
         var email = localStorage.getItem('email-info');
         const URL = 'https://newpantry.herokuapp.com/api/pantry';
@@ -107,7 +108,6 @@ export const PantryGrid = () => {
         setOpenModal(false);
     }
 
-
     return(
         <div className="pantryGrid">
             <div className="top-bar">
@@ -131,26 +131,44 @@ export const PantryGrid = () => {
                                 (index*2 + 1)<ingredients.length ? (
                                     <tr>
                                         <td>
-                                            {ingredients[index*2]}
+                                            <div className="gridTable">
+                                                <div className="gridChildTable" id={index*2}>
+                                                    {ingredients[index*2]}
+                                                </div>
+                                                <div className="gridChildTable">
+                                                    <button id={index*2} className="deleteButton">
+                                                        <FontAwesomeIcon className="delete-pic" onClick={() => deleteIngredient(index*2)} icon={faCircleXmark} />
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </td>
-                                        <button className="deleteButton">
-                                            <FontAwesomeIcon className="delete-pic" onClick={() => deleteIngredient(index*2)} icon={faCircleXmark} />
-                                        </button>
                                         <td>
-                                            {ingredients[index*2 + 1]}
+                                            <div className="gridTable">
+                                                <div className="gridChildTable" id={index*2 + 1}>
+                                                    {ingredients[index*2 + 1]}
+                                                </div>
+                                                <div className="gridChildTable">
+                                                    <button id={index*2 + 1} className="deleteButton">
+                                                        <FontAwesomeIcon className="delete-pic" onClick={() => deleteIngredient(index*2 + 1)} icon={faCircleXmark} />
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </td>
-                                        <button className="deleteButton">
-                                            <FontAwesomeIcon className="delete-pic" onClick={() => deleteIngredient(index*2 + 1)} icon={faCircleXmark} />
-                                        </button>
                                     </tr>
                                     ) : ((index * 2) < ingredients.length ? (
                                     <tr>
                                         <td>
-                                            {ingredients[index*2]}
+                                            <div className="gridTable">
+                                                <div className="gridChildTable" id={index*2}>
+                                                    {ingredients[index*2]}
+                                                </div>
+                                                <div className="gridChildTable">
+                                                    <button id={index*2} className="deleteButton">
+                                                        <FontAwesomeIcon className="delete-pic" onClick={() => deleteIngredient(index*2)} icon={faCircleXmark} />
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </td>
-                                        <button className="deleteButton">
-                                            <FontAwesomeIcon className="delete-pic" onClick={() => deleteIngredient(index*2)} icon={faCircleXmark} />
-                                        </button>
                                     </tr>
                                     ) : null )
                             ]

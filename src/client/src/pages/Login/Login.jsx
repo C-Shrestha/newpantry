@@ -36,15 +36,14 @@ export default class Login extends Component{
             }).then(
                 async (response) => { 
                 var json = "";
-                if (response.status === 400){
-                    var span = document.getElementById("errorSpan");
-                    span.innerHTML = "Invalid email or password";
-                    console.log("Invalid email or password");
+                var span = document.getElementById("errorSpan");
+                if (response.status === 401){
+                    span.innerHTML = "Invalid password";
+                    console.log("Invalid password");
                 }
-                else if(response.status === 401){
-                    var span = document.getElementById("errorSpan");
-                    span.innerHTML = "User email not verified";
-                    console.log("User email not verified");
+                else if(response.status === 404){
+                    span.innerHTML = "Invalid email";
+                    console.log("Invalid email");
                 }
                 else if(response.status === 200){
                     json = await response.json();
@@ -54,7 +53,6 @@ export default class Login extends Component{
                     localStorage.setItem('pass-info', this.state.password);
                     console.log(token);
                     window.location.href = "https://newpantry.herokuapp.com/home";
-                    
                 }
                 return json;
             }).then(function(data){
@@ -72,20 +70,20 @@ export default class Login extends Component{
         console.log("here");
         event.preventDefault();
 
-        const URL1 = 'https://newpantry.herokuapp.com/api/users';
+        const URL1 = 'https://newpantry.herokuapp.com/api/forgotPass';
         const body1 = JSON.stringify({email: this.state.email});
-        console.log(body1);
+        var encoded = encodeURIComponent(body1);
+        console.log(encoded);
         try{
-            const response = await fetch(URL1, {
-                method: 'POST',
-                body: body1,
+            const response = await fetch(URL1 +"?"+ encoded, {
+                method: 'GET',
                 headers: {
                 'Content-Type': 'application/json'
                 },
+            }).then(async (response) => {
+                // const json = await response.json();    
+                console.log(response);
             });
-            const json = await response.json();    
-            console.log(json);
-
         } catch (error){
             console.log(error);
         }; 

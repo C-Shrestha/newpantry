@@ -25,9 +25,8 @@
 
 .pass{
     font-family: 'Barlow Semi Condensed';
-    font-size: 1.1vw;
+    font-size: 3vw;
     color: rgb(122, 122, 122);
-    position: absolute;
     right: 0px;
     background-color: transparent;
     background-repeat: no-repeat;
