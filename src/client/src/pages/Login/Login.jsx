@@ -142,13 +142,12 @@ export default class Login extends Component{
                         onChange={this.handleInputChange}
                         required
                     />
-                    <button onClick={this.forgotPass} className="pass">Forgot Password?</button>
                     <br/><br/>
                     <input type="submit" value="login"/>
                     <br/><br/>
                     <text>Not registered? </text><a href="/signup">Sign Up</a>
                 </form>
-                
+                <button onClick={this.forgotPass} className="pass">Forgot Password?</button>
                 <div className="object">
                     <canvas ref={this.canvasRef} />
                 </div>

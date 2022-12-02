@@ -10,12 +10,14 @@ export const FoodGrid = () => {
   const [meals, setMeals] = useState([]);
   const [latestMeals, setLatestMeals] = useState([]);
   const [ingredients, setIngredients] = useState([]);
+  const [pantry, setPantry] = useState([]);
   const [openModal, setOpenModal] = useState();
   const [heart, setHeart] = useState([]);
   const [lightColor, setLightColor] = useState("#F4B278");
   const [noClick, setNoClick] = useState(false);
 
   var seasonalMeals = [];
+  var pantryMeals = [];
 
   const getSeasonalMeals = async () => {
     try {
@@ -102,10 +104,105 @@ export const FoodGrid = () => {
         console.log(error);
     }; 
   }
+  
+  const getPantryItems = async () => {
+    var loadingDiv = document.getElementById("loadingDiv2");
+    loadingDiv.style.display = "flex";
+    var token = localStorage.getItem('token-info');
+    var email = localStorage.getItem('email-info');
+    const URL = 'https://newpantry.herokuapp.com/api/pantry';
+    const body = JSON.stringify({email: email});
+    try{
+        const response = await fetch(URL, {
+            method: 'POST',
+            body: body,
+            headers: {
+            'Content-Type': 'application/json', 
+            'Authorization': token
+            },
+        });
+        const json = await response.json();
+        var jsonIngredients = json.pantryIngredients;
+        var newIngredients = jsonIngredients.filter(el => {
+            return el != null && el != '';
+        });
+        if(newIngredients.length > 0){
+          var trend = document.getElementById("trendingDiv");
+          trend.style.display = 'none';
+          var you = document.getElementById("forYouDiv");
+          you.style.display = 'block';
+          for(let i =0; i<newIngredients.length; i++){
+            console.log(newIngredients[i]);
+            try {
+              const response = await fetch(
+              `https://www.themealdb.com/api/json/v2/9973533/filter.php?i=${newIngredients[i]}`,
+              )
+              const jsonMeals = await response.json();
+              console.log(jsonMeals);
+              if(jsonMeals.meals === null){
+                continue;
+              }
+              if (jsonMeals.meals.length <= 3){
+                for(let i =0; i<jsonMeals.meals.length; i++){
+                  if(jsonMeals.meals[i]== null){
+                      continue;
+                  }
+                  try {
+                    const response = await fetch(
+                        `https://www.themealdb.com/api/json/v1/1/search.php?s=${jsonMeals.meals[i].strMeal}`,
+                    );
+                    const json = await response.json();
+                    pantryMeals.push(json.meals[0]);
+                  } catch (error) {
+                      console.log(error);
+                  } 
+                }
+              }
+              else {
+                for(let i =0; i<6; i++){
+                  if(jsonMeals.meals[i]== null){
+                      continue;
+                  }
+                  if(!pantryMeals.includes(jsonMeals.meals[i].idMeal)){
+                    try {
+                      const response = await fetch(
+                          `https://www.themealdb.com/api/json/v1/1/search.php?s=${jsonMeals.meals[i].strMeal}`,
+                      );
+                      const json = await response.json();
+                      pantryMeals.push(json.meals[0]);
+                    } catch (error) {
+                        console.log(error);
+                    } 
+                  }
+                }
+              }
+              const uniqueMeals = [];
+              const unique = pantryMeals.filter(element => {
+                const isDuplicate = uniqueMeals.includes(element.idMeal);
+                if (!isDuplicate) {
+                  uniqueMeals.push(element.idMeal);
+              
+                  return true;
+                }
+                return false;
+              });
+              console.log(unique);
+              setPantry(unique); 
+              loadingDiv.style.display = "none";
+            } catch (error) {
+                console.log(error);
+            }
+          }
+        }
+    } catch (error){
+        console.log(error);
+    };
+  }
 
   useEffect(() => {
     getSeasonalMeals();
     getLastestMeals();
+    getPantryItems();
     getHearts();
   }, []);
 
@@ -320,6 +417,50 @@ export const FoodGrid = () => {
                     backgroundImage: `url(${meall.strMealThumb})`,
                 }}>
                 <div className="title" id="trend">{meall.strMeal}</div>
+                <button style={{color: "white", backgroundColor: heart.includes(meall.strMeal) ? "#E54829": "#FABC4F"}}
+                  onClick={(event) => handleRequestClick(event, meall.strMeal)} className='heartbtn' id="trending"><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
+                </div>
+                <Modal
+                      open={openModal === meall.idMeal}
+                      onClose={() => setOpenModal(false)}
+                      aria-labelledby="modal-modal-title"
+                      aria-describedby="modal-modal-description"
+                    >
+                      <Box sx={style}>
+                        <div className="name">
+                          {meall.strMeal}
+                        </div>
+                        <div className="grid">
+                          <div className="gridItem">
+                            <text>INSTRUCTIONS</text><br/>
+                            <div className='list2'>{ingredients.map((ing) => (
+                              <div className="listI">
+                                <FontAwesomeIcon id="circle" icon={faCircle} transform="shrink-7"/>&nbsp;&nbsp;{ing}
+                              </div>
+                            ))}</div><br/>
+                            <text>DIRECTIONS</text><br/>
+                            <div className="direct">{meall.strInstructions}</div>
+                          </div>
+                          <div className="gridItem">
+                            <img src={meall.strMealThumb} alt="food"></img>
+                          </div>
+                        </div>
+                      </Box>
+                    </Modal>
+                </Grid>
+            ))}
+            </Grid>
+          </div>
+          <div id="forYouDiv">
+            <h1 id="u">FOR YOU</h1>
+            <Grid container spacing={{ xs: 2, md: 8 }} columns={{ xs: 4, sm: 8, md: 12 }} p={8}>
+            {pantry.map((meall) => (
+                <Grid item xs={2} sm={4} md={4} key={meall.idMeal}>
+                <div className="card" onClick={() => {setOpenModal(meall.idMeal); getIngredients(meall);}}
+                style={{
+                    backgroundImage: `url(${meall.strMealThumb})`,
+                }}>
+                <div className="title" id="you">{meall.strMeal}</div>
                 <button style={{color: "white", backgroundColor: heart.includes(meall.strMeal) ? "#E54829": "#FABC4F"}}
                   onClick={(event) => handleRequestClick(event, meall.strMeal)} className='heartbtn' id="trending"><FontAwesomeIcon icon={faHeart} transform="grow-20" /></button>
                 </div>

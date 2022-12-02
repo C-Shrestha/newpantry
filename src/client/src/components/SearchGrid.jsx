@@ -53,15 +53,23 @@ function SearchGrid(props){
                                 `https://www.themealdb.com/api/json/v1/1/search.php?s=${jsonMeals.meals[i].strMeal}`,
                             );
                             const json = await response.json();
-                            if (!searchMeals.includes(json.meals[0].idMeal)) {
-                                searchMeals.push(json.meals[0]);
-                            }
+                            searchMeals.push(json.meals[0]);
 
                         } catch (error) {
                             console.log(error);
                         } 
                     }
-                    setMeals(searchMeals);
+                    const uniqueMeals = [];
+                    const unique = searchMeals.filter(element => {
+                      const isDuplicate = uniqueMeals.includes(element.idMeal);
+                      if (!isDuplicate) {
+                        uniqueMeals.push(element.idMeal);
+                    
+                        return true;
+                      }
+                      return false;
+                    });
+                    setMeals(unique);
                     loadingDiv.style.display = "none";
                 }
             } catch (error) {
