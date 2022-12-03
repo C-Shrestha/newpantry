@@ -6,6 +6,7 @@
     "scripts": {
         "start": "node server.js",
         "dev-server": "nodemon server.js",
+        "test-server": "jest src/server/**",
         "heroku-postbuild": " NPM_CONFIG_PRODUCTION=false npm install --prefix src/client && npm run build --prefix src/client"
     },
     "author": "",
@@ -25,6 +26,7 @@
         "request": "^2.88.2"
     },
     "devDependencies": {
+        "jest": "^29.3.1",
         "nodemon": "^2.0.20"
     }
 }

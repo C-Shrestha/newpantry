@@ -12,20 +12,6 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const verifyEmail = async (email) => {
-  try {
-    const validationRes = await mailgunClient.validate.get(email);
-    if (validationRes.result === "deliverable") {
-      return true;
-    } else {
-      return false;
-    }
-  } catch (err) {
-    console.log(err);
-    return false;
-  }
-};
-
 const sendRecoveryEmail = async (email, recoverToken) => {
   const message = {
     from: process.env.MAIL_USERNAME,
@@ -48,4 +34,4 @@ const sendConfirmationEmail = async (email, confirmToken) => {
   transporter.sendMail(message);
 };
 
-module.exports = { verifyEmail, sendConfirmationEmail, sendRecoveryEmail };
+module.exports = { sendConfirmationEmail, sendRecoveryEmail };
