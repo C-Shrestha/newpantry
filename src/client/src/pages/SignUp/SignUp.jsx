@@ -39,7 +39,8 @@ export default class SignUp extends Component{
         if (regex.test(password) === false) {
             var span = document.getElementById("errorSpanSU");
             span.style.color = "#E54829";
-            span.innerHTML = "Password must be minimum 8 characters";
+            span.innerHTML = "Password must be 8 characters";
+            event.preventDefault();
             return;
         }
         event.preventDefault();

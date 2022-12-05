@@ -122,32 +122,35 @@ export default class Login extends Component{
         // Forgot password, e-mail verification
         return(
             <div className="loginDiv">
-                <form className="form" onSubmit={this.onSubmit}>
-                    <h1>LOGIN</h1>
-                    <h2 id="errorSpan"></h2>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="email"
-                        value={this.state.email}
-                        onChange={this.handleInputChange}
-                        required
-                    />
-                    <br/>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        value={this.state.password}
-                        onChange={this.handleInputChange}
-                        required
-                    />
-                    <br/><br/>
-                    <input type="submit" value="login"/>
-                    <br/><br/>
-                    <text>Not registered? </text><a href="/signup">Sign Up</a>
-                </form>
-                <button onClick={this.forgotPass} className="pass">Forgot Password?</button>
+                <div className="loginForm">
+                    <form className="form" onSubmit={this.onSubmit}>
+                        <h1>LOGIN</h1>
+                        <h2 id="errorSpan"></h2>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="email"
+                            value={this.state.email}
+                            onChange={this.handleInputChange}
+                            required
+                        />
+                        <br/>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            value={this.state.password}
+                            onChange={this.handleInputChange}
+                            required
+                        />
+                        <h2 className="pass" onClick={this.forgotPass}>Forgot Password?</h2>
+                        <br/><br/>
+                        <input type="submit" value="login"/>
+                        <br/><br/>
+                        <text>Not registered? </text><a href="/signup">Sign Up</a>
+                    </form>
+                    {/* <button onClick={this.forgotPass} className="pass">Forgot Password?</button> */}
+                </div>
                 <div className="object">
                     <canvas ref={this.canvasRef} />
                 </div>
