@@ -27,7 +27,7 @@ export default class Login extends Component{
         const URL = 'https://newpantry.herokuapp.com/api/login';
         const body = JSON.stringify({email: this.state.email, password: hashedPassword});
         try{
-            const response = await fetch(URL, {
+            await fetch(URL, {
                 method: 'POST',
                 body: body,
                 headers: {
@@ -36,15 +36,16 @@ export default class Login extends Component{
             }).then(
                 async (response) => { 
                 var json = "";
-                if (response.status === 400){
-                    var span = document.getElementById("errorSpan");
-                    span.innerHTML = "Invalid email or password";
-                    console.log("Invalid email or password");
+                var span = document.getElementById("errorSpan");
+                if (response.status === 401){
+                    span.style.color = "#E54829";
+                    span.innerHTML = "Invalid password";
+                    console.log("Invalid password");
                 }
-                else if(response.status === 401){
-                    var span = document.getElementById("errorSpan");
-                    span.innerHTML = "User email not verified";
-                    console.log("User email not verified");
+                else if(response.status === 404){
+                    span.style.color = "#E54829";
+                    span.innerHTML = "Invalid email";
+                    console.log("Invalid email");
                 }
                 else if(response.status === 200){
                     json = await response.json();
@@ -54,7 +55,6 @@ export default class Login extends Component{
                     localStorage.setItem('pass-info', this.state.password);
                     console.log(token);
                     window.location.href = "https://newpantry.herokuapp.com/home";
-                    
                 }
                 return json;
             }).then(function(data){
@@ -67,6 +67,36 @@ export default class Login extends Component{
             console.log(error);
         };
     } 
+
+    forgotPass = async (event) => {
+        event.preventDefault();
+        var email = this.state.email;
+        const URL = 'https://newpantry.herokuapp.com/api/forgotPass';
+        const body = JSON.stringify({email: email});
+        console.log(body);
+        try{
+            const response = await fetch(URL, {
+                method: 'POST',
+                body: body,
+                headers: {
+                'Content-Type': 'application/json'
+                },
+            });
+            console.log(response);
+            var span = document.getElementById("errorSpan");
+            if(response.status === 200){
+                span.style.color = "#A5BA78";
+                span.innerHTML = "Recovery email sent<br/>Please check your email"; 
+            }
+            else if (response.status === 404){
+                span.style.color = "#E54829";
+                span.innerHTML = "Email not found";
+                console.log("Email not found"); 
+            }
+        } catch (error){
+            console.log(error);
+        }; 
+    }
 
     // ******************* COMPONENT LIFECYCLE ******************* //
     componentDidMount() {
@@ -92,32 +122,35 @@ export default class Login extends Component{
         // Forgot password, e-mail verification
         return(
             <div className="loginDiv">
-                <form className="form" onSubmit={this.onSubmit}>
-                    <h1>LOGIN</h1>
-                    <h2 id="errorSpan"></h2>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="email"
-                        value={this.state.email}
-                        onChange={this.handleInputChange}
-                        required
-                    />
-                    <br/>
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="password"
-                        value={this.state.password}
-                        onChange={this.handleInputChange}
-                        required
-                    />
-                    <button className="pass">Forgot Password?</button>
-                    <br/><br/>
-                    <input type="submit" value="login"/>
-                    <br/><br/>
-                    <text>Not registered? </text><a href="/signup">Sign Up</a>
-                </form>
+                <div className="loginForm">
+                    <form className="form" onSubmit={this.onSubmit}>
+                        <h1>LOGIN</h1>
+                        <h2 id="errorSpan"></h2>
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="email"
+                            value={this.state.email}
+                            onChange={this.handleInputChange}
+                            required
+                        />
+                        <br/>
+                        <input
+                            type="password"
+                            name="password"
+                            placeholder="password"
+                            value={this.state.password}
+                            onChange={this.handleInputChange}
+                            required
+                        />
+                        <h2 className="pass" onClick={this.forgotPass}>Forgot Password?</h2>
+                        <br/><br/>
+                        <input type="submit" value="login"/>
+                        <br/><br/>
+                        <text>Not registered? </text><a href="/signup">Sign Up</a>
+                    </form>
+                    {/* <button onClick={this.forgotPass} className="pass">Forgot Password?</button> */}
+                </div>
                 <div className="object">
                     <canvas ref={this.canvasRef} />
                 </div>

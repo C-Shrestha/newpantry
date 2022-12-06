@@ -27,15 +27,29 @@
     font-family: 'Barlow Semi Condensed';
     font-size: 1.1vw;
     color: rgb(122, 122, 122);
-    position: absolute;
+    cursor: pointer;
+    position: relative; 
     right: 0px;
     background-color: transparent;
     background-repeat: no-repeat;
     border: none;
-    padding-top: 0.5%;
+    margin-bottom: -7.5%;
+    margin-left: 35%;
+    z-index: 10px;
 }
+
 .pass:hover{
     color: #A5BA78;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    width: 40%;
+    height: 80%;
+    left: 10%;
+    top: 10%;
 }
 
 .loginDiv input{
@@ -76,5 +90,15 @@
 #errorSpan{
     color: #E54829;
     text-align: center;
+    font-size: 1.3vw;
     margin-top: -10%;
+}
+
+.object{
+    overflow: hidden;
+    width: 55%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
 }

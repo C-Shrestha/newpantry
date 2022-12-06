@@ -13,6 +13,10 @@
     margin-top: -1%;
 }
 
+#u {
+    color: #E54829;
+}
+
 .card{
     height: 400px;
     color: white; 
@@ -30,7 +34,6 @@
     font-weight: bolder;
     font-size: 2.5vw;
     text-align: left;
-    /* background-color: #A5BA78; */
     bottom: 0px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -38,12 +41,17 @@
     color: white;
     padding: 1% 1% 1% 1%;
 }
+
 #fav {
     background-color: #4F5E30;
 }
 
 #trend{
     background-color: #958BC4;  
+}
+
+#you {
+    background-color: #f18671;
 }
 
 .heartbtn{
@@ -59,15 +67,8 @@
     z-index: 10px;
 }
 .heartbtn:active{
-
     box-shadow: inset 2px 2px 3px rgb(49, 49, 49);
     transform: translateY(4px);
-
-    /* color: #000;
-    background-position: 0 50%;
-    background: #333333;
-    box-shadow: inset 0 2px 3px rgba(black, .5), 0 1px 1px */
-
 }
 #heart {
     background-color: #E54829; 
@@ -234,4 +235,8 @@ text{
     text-align: center;
     font-size: 2vw;
     color: #F4B278;
+}
+
+#forYouDiv {
+    display: none;
 }

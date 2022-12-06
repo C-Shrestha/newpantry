@@ -36,10 +36,11 @@ export default class SignUp extends Component{
     onSubmit = async (event) => {
         var password = this.state.password;
         var regex = /^[^]{8,16}$/;
-        if (regex.test(password) == false) {
+        if (regex.test(password) === false) {
             var span = document.getElementById("errorSpanSU");
             span.style.color = "#E54829";
-            span.innerHTML = "Password must be minimum 8 characters";
+            span.innerHTML = "Password must be 8 characters";
+            event.preventDefault();
             return;
         }
         event.preventDefault();
@@ -48,21 +49,30 @@ export default class SignUp extends Component{
         const URL = 'https://newpantry.herokuapp.com/api/signup';
         const body = JSON.stringify({firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: hashedPassword, profilePicture: this.state.profilePicture});
         try{
-            const response = await fetch(URL, {
+            await fetch(URL, {
                 method: 'POST',
                 body: body,
                 headers: {
                 'Content-Type': 'application/json'
                 },
-            }).then((response) => { 
-                if (response.status === 400){
-                    var span = document.getElementById("errorSpanSU");
+            }).then((response) => {
+                var span = document.getElementById("errorSpanSU"); 
+                if (response.status === 409){ 
+                    span.style.color = '#E54829';
+                    span.innerHTML = "User already exists";
+                    console.log("User already exists");
+                }
+                else if (response.status === 503){
                     span.style.color = '#E54829';
                     span.innerHTML = "Failed to create user";
                     console.log("Failed to create user");
                 }
-                if (response.status === 200){
-                    var span = document.getElementById("errorSpanSU");
+                else if (response.status === 404){
+                    span.style.color = '#E54829';
+                    span.innerHTML = "Could not search for user";
+                    console.log("Could not search for user"); 
+                }
+                else if (response.status === 200){
                     span.style.color = '#A5BA78';
                     span.innerHTML = "User created <br/>Please confirm email address";
                     console.log("User created - please confirm new user's email address");

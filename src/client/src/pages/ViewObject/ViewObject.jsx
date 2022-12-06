@@ -12,6 +12,7 @@ export default class ViewObject{
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.scene = new THREE.Scene();
         this.camera = new THREE.PerspectiveCamera( 75, 1, 0.1, 100 );
+        // this.camera.position.set(1.25, 1.25, 0.75);
         this.camera.position.set(1.25, 1.25, 0.75);
         this.scene.add(this.camera);
 

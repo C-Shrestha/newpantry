@@ -56,13 +56,20 @@ export default class Profile extends Component{
 
     onSubmit = async (event) => {
         event.preventDefault();
+        var password = this.state.password;
+        var regex = /^[^]{8,16}$/;
+        if (regex.test(password) === false) {
+            var span = document.getElementById("errorSpan");
+            span.style.color = "#E54829";
+            span.innerHTML = "Password must be minimum 8 characters";
+            return;
+        }
         var md5 = require('md5');
-        var hashedPassword = md5(this.state.password);
-        console.log(this.state.token);
+        var hashedPassword = md5(password);
         const URL = 'https://newpantry.herokuapp.com/api/editProfile';
         const body = JSON.stringify({email: this.state.email, firstName: this.state.firstName, lastName: this.state.lastName, password: hashedPassword});
         try{
-            const response = await fetch(URL, {
+            await fetch(URL , {
                 method: 'POST',
                 body: body,
                 headers: {
@@ -72,9 +79,21 @@ export default class Profile extends Component{
             }).then(
                 async (response) => { 
                 var json = "";
-               if(response.status === 200){
+                var span = document.getElementById("errorSpan");
+                if(response.status === 404){
+                    span.style.color = "#E54829";
+                    span.style.marginLeft = '-10%';
+                    span.innerHTML = "Invalid email"; 
+                }
+                else if(response.status === 200){
                     json = await response.json();
                     localStorage.setItem('pass-info', this.state.password);
+                    span.style.color = '#A5BA78';
+                    span.style.marginLeft = '-10%';
+                    span.innerHTML = "Profile Updated";
+                    setTimeout(function(){
+                        span.innerHTML = '';
+                    }, 3000);
                 }
                 return json;
             }).then(function(data){
@@ -136,6 +155,7 @@ export default class Profile extends Component{
                 <div id="food">
                     <div className="profileDiv">
                         <form className="formPR" onSubmit={this.onSubmit}>
+                        <h2 id="errorSpan"></h2>
                             <input
                                 id="edit1"
                                 type="text"
