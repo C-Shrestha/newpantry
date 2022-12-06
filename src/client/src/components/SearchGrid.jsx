@@ -179,7 +179,7 @@ function SearchGrid(props){
                         </div>
                         <div className="grid">
                         <div className="gridItem">
-                            <text>INSTRUCTIONS</text><br/>
+                            <text>INGREDIENTS</text><br/>
                             <div className='list2'>{ingredients.map((ing) => (
                             <div className="listI">
                                 <FontAwesomeIcon id="circle" icon={faCircle} transform="shrink-7"/>&nbsp;&nbsp;{ing}
