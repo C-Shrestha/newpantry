@@ -9,7 +9,6 @@ router.get('/', async(req, res) => {
 });
 
 router.post('/', authToken, async(req, res) => {
-  console.log("Hello world");
   await User.findOne( { email: req.body.email } ).then((user) => {
     if (user) {
       user.firstName = req.body.firstName;
