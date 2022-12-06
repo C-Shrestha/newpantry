@@ -278,6 +278,7 @@ export const FoodGrid = () => {
     var seasonalDiv = document.getElementById("seasonalDiv");
     var trendingDiv = document.getElementById("trendingDiv");
     var loadingDiv = document.getElementById("loadingDiv");
+    var forYouDiv = document.getElementById("forYouDiv"); 
 
     var seasonalHeader = document.getElementById("seasonalHeader");
     var title = document.getElementById("title");
@@ -287,6 +288,7 @@ export const FoodGrid = () => {
     loadingDiv.style.display = "flex";
     seasonalDiv.style.display = "none";
     trendingDiv.style.display = "none";
+    forYouDiv.style.display = 'none';
     
     var list = [["#FABC4F", "#FDD898"], ["#A5BA78", "#A5BA78"], ["#EA862D", "#F4B278"], ["#5E5684", "#958BC4"], ["#E54829", "#DB8D7E"], ["#4F5E30", "#94A474"]];
 
